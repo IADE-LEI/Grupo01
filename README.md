@@ -6,7 +6,12 @@ __________
 __________
 
 #### Descrição
-- Breve descrição do projeto a desenvolver 
+- Breve descrição do projeto a desenvolver
+
+#### Tecnologias utilizadas
+- Java https://www.oracle.com/pt/java/technologies/downloads
+- libgdx https://libgdx.com
+- IDE Jetbrains IntelliJ IDEA https://www.jetbrains.com/idea/download/download-thanks.html
 
 #### Profesor 
 - Nelson Costa
