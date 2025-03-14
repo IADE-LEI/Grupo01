@@ -1,7 +1,7 @@
 >### IADE - Lic. de Engenharia Informática - 2024/2025 
 >### LEI1A2S - Programação e Algoritmos
 __________
-## Movies - Registo de filmes
+## Java Game
 ### Projeto de Programação e Algoritmos - Grupo 01
 __________
 
