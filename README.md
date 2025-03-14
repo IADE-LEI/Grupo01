@@ -14,5 +14,6 @@ __________
 #### Autores
 - António Carlos Neto (20241391)
 - Paulo André Jadaugy (20241711)
+- Tomás Pinto Pereira (20241740)
 - Affonso Sana Neto (20240910)
 
