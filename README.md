@@ -13,7 +13,7 @@ __________
 - libgdx https://libgdx.com
 - IDE Jetbrains IntelliJ IDEA https://www.jetbrains.com/idea/download/download-thanks.html
 
-#### Profesor 
+#### Professor 
 - Nelson Costa
 
 #### Autores
