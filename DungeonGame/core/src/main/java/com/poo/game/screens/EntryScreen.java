@@ -29,12 +29,12 @@ public class EntryScreen implements Screen {
         game.batch.begin();
 
         //Draw entry message.
-        game.font.draw(game.batch, "Welcome to the Dungeon Game ", 15, 10.5f);
-        game.font.draw(game.batch, "Tap anywhere to begin!", 15, 10);
+        game.font.draw(game.batch, "Welcome to the Dungeon Game ", 10, 15);
+        game.font.draw(game.batch, "Tap anywhere to begin!", 10, 12);
         game.batch.end();
 
         if (Gdx.input.isTouched()) {
-            game.setScreen(new DummyScreen(game));
+            game.setScreen(new GameScreen(game));
             dispose();
         }
     }

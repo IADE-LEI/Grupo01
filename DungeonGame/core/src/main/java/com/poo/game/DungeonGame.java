@@ -8,8 +8,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.poo.game.screens.EntryScreen;
 
 public class DungeonGame extends Game {
-    public static int worldWidth = 40;
-    public static int worldHeight = 30;
+    public static int worldWidth = 32;
+    public static int worldHeight = 20;
 
     public SpriteBatch batch;
     public BitmapFont font;
