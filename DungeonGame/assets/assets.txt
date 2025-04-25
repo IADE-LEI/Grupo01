@@ -1,0 +1,3 @@
+audio/music/main.ogg
+image/libgdx.png
+image/player.png
