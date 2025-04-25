@@ -1,3 +1,14 @@
+/**
+ * ----------------------------------------------------------------------------
+ * Licenciatura de Engenharia Informática - IADE - 2024/2025
+ * ----------------------------------------------------------------------------
+ * Projeto      : Dungeon Game (Projeto Grupo 1)
+ * Disciplica   : Programação e Algoritmos (LEI1A2S)
+ * Professor    : Nelson Costa
+ * Autores      : Affonso Neto | António Neto | Paulo Jadaugy | Tomás Pereira
+ * ----------------------------------------------------------------------------
+ */
+
 package com.poo.game.elements;
 
 import com.badlogic.gdx.graphics.Texture;
@@ -10,8 +21,8 @@ public abstract class MapElement {
     Vector2 size;
 
     // Identifier of the element
-    private String textureName;
-    private String name;
+    private final String textureName;
+    private final String name;
 
     //Texture of the element in the map
     protected Texture texture;
@@ -24,7 +35,7 @@ public abstract class MapElement {
 
         this.textureName = textureName;
         this.name = name;
-        this.texture = new Texture(textureName + ".png");
+        this.texture = new Texture("image\\" + textureName + ".png");
 
         this.sprite = new Sprite(texture);
         this.sprite.setSize(size.x, size.y);
@@ -44,7 +55,7 @@ public abstract class MapElement {
         this.position = new Vector2(posX, posY);
     }
 
-    public void draw(SpriteBatch batch){
+    public void draw(SpriteBatch batch) {
         sprite.draw(batch);
         //batch.draw(texture, position.x,position.y, size.x, size.y);
     }

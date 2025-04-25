@@ -11,17 +11,14 @@
 
 package com.poo.game.screens;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.utils.ScreenUtils;
 import com.poo.game.DungeonGame;
 
-public class EntryScreen implements Screen {
+public class OptionsScreen implements Screen {
 
     final DungeonGame game;
 
-    public EntryScreen(final DungeonGame game) {
+    public OptionsScreen(final DungeonGame game) {
         this.game = game;
     }
 
@@ -32,22 +29,7 @@ public class EntryScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        ScreenUtils.clear(Color.BLACK);
 
-        game.viewport.apply();
-        game.batch.setProjectionMatrix(game.viewport.getCamera().combined);
-
-        game.batch.begin();
-
-        //Draw entry message.
-        game.font.draw(game.batch, "Welcome to the Dungeon Game ", 10, 15);
-        game.font.draw(game.batch, "Tap anywhere to begin!", 10, 12);
-        game.batch.end();
-
-        if (Gdx.input.isTouched()) {
-            game.setScreen(new GameScreen(game));
-            dispose();
-        }
     }
 
     @Override

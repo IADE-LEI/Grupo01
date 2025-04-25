@@ -1,8 +1,17 @@
+/**
+ * ----------------------------------------------------------------------------
+ * Licenciatura de Engenharia Informática - IADE - 2024/2025
+ * ----------------------------------------------------------------------------
+ * Projeto      : Dungeon Game (Projeto Grupo 1)
+ * Disciplica   : Programação e Algoritmos (LEI1A2S)
+ * Professor    : Nelson Costa
+ * Autores      : Affonso Neto | António Neto | Paulo Jadaugy | Tomás Pereira
+ * ----------------------------------------------------------------------------
+ */
+
 package com.poo.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -15,7 +24,7 @@ public class Main extends ApplicationAdapter {
     @Override
     public void create() {
         batch = new SpriteBatch();
-        image = new Texture("libgdx.png");
+        image = new Texture("image\\libgdx.png");
     }
 
     @Override

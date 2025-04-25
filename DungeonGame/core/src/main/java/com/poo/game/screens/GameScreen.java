@@ -1,12 +1,20 @@
+/**
+ * ----------------------------------------------------------------------------
+ * Licenciatura de Engenharia Informática - IADE - 2024/2025
+ * ----------------------------------------------------------------------------
+ * Projeto      : Dungeon Game (Projeto Grupo 1)
+ * Disciplica   : Programação e Algoritmos (LEI1A2S)
+ * Professor    : Nelson Costa
+ * Autores      : Affonso Neto | António Neto | Paulo Jadaugy | Tomás Pereira
+ * ----------------------------------------------------------------------------
+ */
+
 package com.poo.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.poo.game.DungeonGame;
 import com.poo.game.elements.Player;
@@ -14,7 +22,7 @@ import com.poo.game.elements.Player;
 public class GameScreen implements Screen {
     final DungeonGame game;
 
-    private Player player;
+    private final Player player;
 
     public GameScreen(final DungeonGame game) {
         this.game = game;
@@ -35,19 +43,22 @@ public class GameScreen implements Screen {
 
     private void input() {
         float speed = 2f;
+        float turbo =
+            Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT) ||
+                Gdx.input.isKeyPressed(Input.Keys.CONTROL_RIGHT) ? game.gameOptions.getMoveTurbo() : 1f;
         float delta = Gdx.graphics.getDeltaTime();
 
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            player.getSprite().translateX(speed * delta);
+            player.getSprite().translateX(speed * turbo * delta);
         }
         else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            player.getSprite().translateX(-speed * delta);
+            player.getSprite().translateX(-speed * turbo * delta);
         }
         else if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            player.getSprite().translateY(speed * delta);
+            player.getSprite().translateY(speed * turbo * delta);
         }
         else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            player.getSprite().translateY(-speed * delta);
+            player.getSprite().translateY(-speed * turbo * delta);
         }
     }
 
