@@ -18,8 +18,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
-import java.util.Objects;
-
 public abstract class MapElement {
     Vector2 size;
 
@@ -30,21 +28,18 @@ public abstract class MapElement {
     protected Texture texture;
     protected Sprite sprite;
 
-
     MapElement(String name, float x, float y, float width, float height) {
-        this.size = new Vector2(width, height);
-
-        this.name = name;
-        this.texture = new Texture("image\\" + name + ".png");
-        this.sprite = new Sprite(texture);
-        this.sprite.setSize(size.x, size.y);
-        this.sprite.setPosition(x, y);
+        this(null, name, x, y, width, height);
     }
 
     MapElement(Color color, String name, float x, float y, float width, float height) {
         this.size = new Vector2(width, height);
         this.name = name;
-        this.texture = createPlaceholderTexture(color);
+        if (color != null) {
+            this.texture = createPlaceholderTexture(color);
+        } else {
+            this.texture = new Texture("image\\" + name + ".png");
+        }
         this.sprite = new Sprite(texture);
         this.sprite.setSize(size.x, size.y);
         this.sprite.setPosition(x, y);
@@ -56,7 +51,6 @@ public abstract class MapElement {
 
     public void draw(SpriteBatch batch) {
         sprite.draw(batch);
-        //batch.draw(texture, position.x,position.y, size.x, size.y);
     }
 
     public Sprite getSprite() {

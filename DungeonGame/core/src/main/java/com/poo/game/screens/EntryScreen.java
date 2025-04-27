@@ -12,26 +12,52 @@
 package com.poo.game.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.poo.game.DungeonGame;
 
-public class EntryScreen implements Screen {
-
-    final DungeonGame game;
+public class EntryScreen extends BaseScreen {
+    Stage stage;
 
     public EntryScreen(final DungeonGame game) {
-        this.game = game;
-    }
+        super(game);
 
-    @Override
-    public void show() {
-
+        stage = new Stage();
+        stage.addListener(new InputListener() {
+            @Override
+            public boolean keyDown(InputEvent event, int keycode) {
+                switch (keycode) {
+                    case Input.Keys.F2:
+                        game.gotoGameScreen();
+                        return true;
+                    case Input.Keys.F10:
+                        game.gotoOptionsScreen();
+                        return true;
+                    case Input.Keys.ESCAPE:
+                        game.exit();
+                        return true;
+                }
+                return false;
+            }
+        });
+        Gdx.input.setInputProcessor(stage);
     }
 
     @Override
     public void render(float delta) {
+        draw();
+    }
+
+    @Override
+    public void dispose() {
+        stage.dispose();
+    }
+
+    private void draw() {
         ScreenUtils.clear(Color.BLACK);
 
         game.viewport.apply();
@@ -39,39 +65,11 @@ public class EntryScreen implements Screen {
 
         game.batch.begin();
 
-        //Draw entry message.
-        game.font.draw(game.batch, "Welcome to the Dungeon Game ", 10, 15);
-        game.font.draw(game.batch, "Tap anywhere to begin!", 10, 12);
+        game.font.draw(game.batch, "Welcome to the Dungeon Game ", 10, 16);
+        game.font.draw(game.batch, "Play (F2)", 10, 13);
+        game.font.draw(game.batch, "Options (F10)", 10, 12);
+        game.font.draw(game.batch, "Exit (ESC)", 10, 11);
+
         game.batch.end();
-
-        if (Gdx.input.isTouched()) {
-            game.setScreen(new GameScreen(game));
-            dispose();
-        }
-    }
-
-    @Override
-    public void resize(int width, int height) {
-        game.viewport.update(width, height, true);
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
-    public void dispose() {
-
     }
 }

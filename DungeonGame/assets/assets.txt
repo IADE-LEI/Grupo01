@@ -1,3 +1,8 @@
 audio/music/main.ogg
 image/libgdx.png
 image/player.png
+skin/button/font-big-export.fnt
+skin/button/font-export.fnt
+skin/button/glassy-ui.atlas
+skin/button/glassy-ui.json
+skin/button/glassy-ui.png

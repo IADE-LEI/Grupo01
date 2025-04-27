@@ -13,48 +13,49 @@ package com.poo.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.poo.game.DungeonGame;
-import com.poo.game.elements.Floor;
-import com.poo.game.elements.MapElement;
 import com.poo.game.elements.Player;
 import com.poo.game.map.BSPMapGenerator;
 import com.poo.game.map.MapData;
 import com.poo.game.map.MapRenderer;
 
-
-public class GameScreen implements Screen {
-    final DungeonGame game;
-
-    private MapData mapData;
-    private MapRenderer mapRenderer;
-
+public class GameScreen extends BaseScreen {
+    private final MapData mapData;
+    private final MapRenderer mapRenderer;
     private final Player player;
 
+    Stage stage;
+
     public GameScreen(final DungeonGame game) {
-        this.game = game;
+        super(game);
+
+        stage = new Stage();
+        stage.addListener(new InputListener() {
+            @Override
+            public boolean keyDown(InputEvent event, int keyCode) {
+                if (keyCode == Input.Keys.ESCAPE) {
+                    game.gotoEntryScreen();
+                    return true;
+                }
+               return false;
+            }
+        });
+        Gdx.input.setInputProcessor(stage);
 
         BSPMapGenerator generator = new BSPMapGenerator(DungeonGame.worldWidth, DungeonGame.worldHeight, 5, 10, 4);
         mapData = generator.generate();
 
         Vector2 startingPosition = mapData.getStartingPosition();
-        player = new Player(startingPosition.x,startingPosition.y,0.85f,0.85f);
+        player = new Player(startingPosition.x, startingPosition.y, 0.85f, 0.85f);
 
         // Set up rendering with the map
         mapRenderer = new MapRenderer(mapData);
-
-    }
-
-    @Override
-    public void show() {
     }
 
     @Override
@@ -89,34 +90,12 @@ public class GameScreen implements Screen {
         game.viewport.apply();
 
         game.batch.setProjectionMatrix(game.viewport.getCamera().combined);
+        game.batch.enableBlending();
         game.batch.begin();
+
         mapRenderer.render(game.batch);
         player.draw(game.batch);
+
         game.batch.end();
-    }
-
-    @Override
-    public void resize(int width, int height) {
-        game.viewport.update(width, height, true);
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
-    public void dispose() {
-
     }
 }

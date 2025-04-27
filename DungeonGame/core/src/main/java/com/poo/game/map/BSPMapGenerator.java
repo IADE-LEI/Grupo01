@@ -1,13 +1,24 @@
+/**
+ * ----------------------------------------------------------------------------
+ * Licenciatura de Engenharia Informática - IADE - 2024/2025
+ * ----------------------------------------------------------------------------
+ * Projeto      : Dungeon Game (Projeto Grupo 1)
+ * Disciplica   : Programação e Algoritmos (LEI1A2S)
+ * Professor    : Nelson Costa
+ * Autores      : Affonso Neto | António Neto | Paulo Jadaugy | Tomás Pereira
+ * ----------------------------------------------------------------------------
+ */
+
 package com.poo.game.map;
 
 import com.poo.game.elements.Floor;
 
 public class BSPMapGenerator {
-    private MapData mapData;
-    private int minRoomSize;
-    private int maxRoomSize;
-    private int splitDepth;
-    private Corridor corridor;
+    private final MapData mapData;
+    private final int minRoomSize;
+    private final int maxRoomSize;
+    private final int splitDepth;
+    private final Corridor corridor;
 
     public BSPMapGenerator(int width, int height, int minRoomSize, int maxRoomSize, int splitDepth) {
         this.mapData = new MapData(width, height);

@@ -1,10 +1,17 @@
+/**
+ * ----------------------------------------------------------------------------
+ * Licenciatura de Engenharia Informática - IADE - 2024/2025
+ * ----------------------------------------------------------------------------
+ * Projeto      : Dungeon Game (Projeto Grupo 1)
+ * Disciplica   : Programação e Algoritmos (LEI1A2S)
+ * Professor    : Nelson Costa
+ * Autores      : Affonso Neto | António Neto | Paulo Jadaugy | Tomás Pereira
+ * ----------------------------------------------------------------------------
+ */
+
 package com.poo.game.map;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.poo.game.elements.Wall;
 
 public class MapRenderer {
     private MapData mapData;
