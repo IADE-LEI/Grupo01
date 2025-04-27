@@ -18,6 +18,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.poo.game.screens.EntryScreen;
+import com.poo.game.screens.GameScreen;
+import com.poo.game.screens.OptionsScreen;
 
 public class DungeonGame extends Game {
     public static int worldWidth = 32;
@@ -48,7 +50,7 @@ public class DungeonGame extends Game {
         this.mainMusic = Gdx.audio.newMusic(Gdx.files.internal("audio/music/main.ogg"));
         this.mainMusic.setLooping(true);
 
-        this.setScreen(new EntryScreen(this));
+        this.gotoEntryScreen();
     }
 
     public void render() {
@@ -57,7 +59,28 @@ public class DungeonGame extends Game {
 
         if (gameOptions.getPlayMusic()) {
             mainMusic.play();
+        } else {
+            mainMusic.stop();
         }
+    }
+
+    public void gotoEntryScreen() {
+        EntryScreen screen = new EntryScreen(this);
+        this.setScreen(screen);
+    }
+
+    public void gotoGameScreen() {
+        GameScreen screen = new GameScreen(this);
+        this.setScreen(screen);
+    }
+
+    public void gotoOptionsScreen() {
+        OptionsScreen screen = new OptionsScreen(this);
+        this.setScreen(screen);
+    }
+
+    public void exit() {
+        Gdx.app.exit();
     }
 
     public void dispose() {
