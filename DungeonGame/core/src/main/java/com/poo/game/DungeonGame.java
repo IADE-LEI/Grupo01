@@ -34,10 +34,10 @@ public class DungeonGame extends Game {
     public void create() {
         batch = new SpriteBatch();
 
+        viewport = new FitViewport(worldWidth, worldHeight);
+
         // Using libGDX default font
         font = new BitmapFont();
-
-        viewport = new FitViewport(worldWidth, worldHeight);
 
         //font has 15pt, but we need to scale it to our viewport by ratio of viewport height to screen height
         font.setUseIntegerPositions(false);

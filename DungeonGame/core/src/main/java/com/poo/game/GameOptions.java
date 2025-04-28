@@ -11,6 +11,7 @@
 
 package com.poo.game;
 
+import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
 /**
@@ -53,8 +54,9 @@ public class GameOptions {
     /**
      * Save options values to application preferences
      */
-    public void SaveOptions() {
+    public void SaveOptions() throws BackingStoreException {
         this.prefs.putBoolean("PlayMusic", this.playMusic);
         this.prefs.putFloat("MoveTurbo", this.moveTurbo);
+        this.prefs.flush();
     }
 }

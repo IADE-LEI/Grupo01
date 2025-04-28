@@ -23,20 +23,25 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.poo.game.Constants;
 import com.poo.game.DungeonGame;
 
+import java.util.prefs.BackingStoreException;
+
 public class OptionsScreen extends BaseScreen implements Screen {
+    ScreenViewport viewport;
     Skin skin;
     Stage stage;
     Button saveButton;
-    Button backButton;
+    Button cancelButton;
 
     public OptionsScreen(final DungeonGame game) {
         super(game);
 
         skin = new Skin(Gdx.files.internal(Constants.BUTTON_SKIN));
-        stage = new Stage();
+        viewport = new ScreenViewport();
+        stage = new Stage(viewport);
         Gdx.input.setInputProcessor(stage);
 
         // Keyboard input for screen
@@ -57,9 +62,9 @@ public class OptionsScreen extends BaseScreen implements Screen {
             }
         });
 
-        saveButton = new TextButton("Save", skin, "small");
-        saveButton.setSize(Constants.COL_WIDTH, Constants.COL_HEIGHT);
-        saveButton.setPosition(Constants.CENTER_X + saveButton.getWidth(), 5);
+        saveButton = new TextButton("Save (F10)", skin, "small");
+        saveButton.setSize(Constants.COL_WIDTH * 2, Constants.COL_HEIGHT);
+        saveButton.setPosition(Constants.SCREEN_WIDTH - saveButton.getWidth(), 5);
         saveButton.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -75,10 +80,10 @@ public class OptionsScreen extends BaseScreen implements Screen {
         });
         stage.addActor(saveButton);
 
-        backButton = new TextButton("Back", skin, "small");
-        backButton.setSize(Constants.COL_WIDTH, Constants.COL_HEIGHT);
-        backButton.setPosition(Constants.CENTER_X - backButton.getWidth(), 5);
-        backButton.addListener(new InputListener() {
+        cancelButton = new TextButton("Cancel (ESC)", skin, "small");
+        cancelButton.setSize(Constants.COL_WIDTH * 2, Constants.COL_HEIGHT);
+        cancelButton.setPosition(Constants.SCREEN_WIDTH - cancelButton.getWidth() - saveButton.getWidth(), 5);
+        cancelButton.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 game.gotoEntryScreen();
@@ -90,7 +95,7 @@ public class OptionsScreen extends BaseScreen implements Screen {
                 super.touchUp(event, x, y, pointer, button);
             }
         });
-        stage.addActor(backButton);
+        stage.addActor(cancelButton);
     }
 
     @Override
@@ -99,7 +104,7 @@ public class OptionsScreen extends BaseScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        ScreenUtils.clear(Color.LIGHT_GRAY);
+        ScreenUtils.clear(Color.NAVY);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act();
         stage.draw();
@@ -107,7 +112,7 @@ public class OptionsScreen extends BaseScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-        stage.getViewport().update(width, height, true);
+        stage.getViewport().update(width, height, false);
     }
 
     @Override
@@ -119,6 +124,10 @@ public class OptionsScreen extends BaseScreen implements Screen {
     private void saveOptions() {
         game.gameOptions.setPlayMusic(true);
         game.gameOptions.setMoveTurbo(4f);
-        game.gameOptions.SaveOptions();
+        try {
+            game.gameOptions.SaveOptions();
+        } catch (BackingStoreException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
