@@ -4,44 +4,54 @@
  * Projeto : Dungeon Game (Projeto Grupo 1)
  * Disciplica : Programação e Algoritmos (LEI1A2S)
  * Professor : Nelson Costa
- * Autores : Affonso Neto | António Neto | Paulo Jadaugy | Tomás Pereira
+ * Autores : Affonso Neto | António Neto | Paulo Jadaugy | Tiago Araújo | Tomás Pereira
  * ------------------------------------------------------------------------------------------------
  */
 package com.poo.game.map;
 
 import com.badlogic.gdx.math.Vector2;
-import com.poo.game.elements.Floor;
-import com.poo.game.elements.MapElement;
-import com.poo.game.elements.Wall;
+import com.poo.game.entities.*;
 
+/** Class for map information Tiles (Floor & Wall) & Player */
 public class MapData {
-  private final MapElement[][] tiles;
   private final int width;
   private final int height;
+
+  private final Entity[][] tiles;
+  private PlayerEntity player;
 
   public MapData(int width, int height) {
     this.width = width;
     this.height = height;
-    this.tiles = new MapElement[width][height];
+    this.tiles = new Entity[width][height];
     initializeWithWalls();
   }
 
   private void initializeWithWalls() {
     for (int x = 0; x < width; x++) {
       for (int y = 0; y < height; y++) {
-        tiles[x][y] = new Wall(x, y, 1, 1);
+        tiles[x][y] = new WallEntity(x, y, 1, 1);
       }
     }
   }
 
-  public void setTile(int x, int y, MapElement value) {
+  public void setPlayer(float width, float height) {
+    Vector2 startingPosition = getStartingPosition();
+    this.player = new PlayerEntity(startingPosition.x, startingPosition.y, width, height);
+  }
+
+  public PlayerEntity getPlayer() {
+    return player;
+  }
+
+  public void setTile(int x, int y, Entity value) {
     // Validate inputs
     if (x >= 0 && x < width && y >= 0 && y < height) {
       tiles[x][y] = value;
     }
   }
 
-  public MapElement getTile(int x, int y) {
+  public Entity getTile(int x, int y) {
     if (x >= 0 && x < width && y >= 0 && y < height) {
       return tiles[x][y];
     }
@@ -56,14 +66,14 @@ public class MapData {
     return height;
   }
 
-  public MapElement[][] getTiles() {
+  public Entity[][] getTiles() {
     return tiles;
   }
 
   public Vector2 getStartingPosition() {
     for (int x = 0; x < width; x++) {
       for (int y = 0; y < height; y++) {
-        if (getTile(x, y) instanceof Floor) return new Vector2(x, y);
+        if (getTile(x, y) instanceof FloorEntity) return new Vector2(x, y);
       }
     }
     return null;

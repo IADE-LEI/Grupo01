@@ -4,29 +4,24 @@
  * Projeto : Dungeon Game (Projeto Grupo 1)
  * Disciplica : Programação e Algoritmos (LEI1A2S)
  * Professor : Nelson Costa
- * Autores : Affonso Neto | António Neto | Paulo Jadaugy | Tomás Pereira
+ * Autores : Affonso Neto | António Neto | Paulo Jadaugy | Tiago Araújo | Tomás Pereira
  * ------------------------------------------------------------------------------------------------
  */
 package com.poo.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.ScreenUtils;
 import com.poo.game.DungeonGame;
-import com.poo.game.elements.Player;
 import com.poo.game.map.BSPMapGenerator;
 import com.poo.game.map.MapData;
-import com.poo.game.map.MapRenderer;
+import com.poo.game.map.MapSystem;
 
+/** Gamming screen */
 public class GameScreen extends BaseScreen {
-  private final MapData mapData;
-  private final MapRenderer mapRenderer;
-  private final Player player;
+  private final MapSystem mapSystem;
 
   Stage stage;
 
@@ -47,21 +42,23 @@ public class GameScreen extends BaseScreen {
         });
     Gdx.input.setInputProcessor(stage);
 
+    // Generate map
     BSPMapGenerator generator =
         new BSPMapGenerator(DungeonGame.worldWidth, DungeonGame.worldHeight, 5, 10, 4);
-    mapData = generator.generate();
+    MapData mapData = generator.generate();
 
-    Vector2 startingPosition = mapData.getStartingPosition();
-    player = new Player(startingPosition.x, startingPosition.y, 0.85f, 0.85f);
+    // Generate player on mapData
+    mapData.setPlayer(0.85f, 0.85f);
 
     // Set up rendering with the map
-    mapRenderer = new MapRenderer(mapData);
+    mapSystem = new MapSystem(mapData);
   }
 
   @Override
   public void render(float delta) {
     input();
-    draw();
+
+    mapSystem.update(game);
   }
 
   private void input() {
@@ -74,30 +71,16 @@ public class GameScreen extends BaseScreen {
     float speed = 2f * delta * turbo;
 
     if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-      player.move(-speed, 0, mapData, 1);
+      mapSystem.movePlayer(MapSystem.ENMoveType.LEFT, speed);
     }
     if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-      player.move(speed, 0, mapData, 1);
+      mapSystem.movePlayer(MapSystem.ENMoveType.RIGHT, speed);
     }
     if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-      player.move(0, speed, mapData, 1);
+      mapSystem.movePlayer(MapSystem.ENMoveType.UP, speed);
     }
     if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-      player.move(0, -speed, mapData, 1);
+      mapSystem.movePlayer(MapSystem.ENMoveType.DOWN, speed);
     }
-  }
-
-  private void draw() {
-    ScreenUtils.clear(Color.BLACK);
-    game.viewport.apply();
-
-    game.batch.setProjectionMatrix(game.viewport.getCamera().combined);
-    game.batch.enableBlending();
-    game.batch.begin();
-
-    mapRenderer.render(game.batch);
-    player.draw(game.batch);
-
-    game.batch.end();
   }
 }

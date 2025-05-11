@@ -7,38 +7,14 @@
  * Autores : Affonso Neto | António Neto | Paulo Jadaugy | Tiago Araújo | Tomás Pereira
  * ------------------------------------------------------------------------------------------------
  */
-package com.poo.game.screens;
+package com.poo.game.entities;
 
-import com.badlogic.gdx.Screen;
-import com.poo.game.DungeonGame;
+import com.poo.game.components.SpriteImageComponent;
 
-public class BaseScreen implements Screen {
-  protected final DungeonGame game;
-
-  BaseScreen(DungeonGame game) {
-    this.game = game;
+/** Player entity (ECS - Entity) */
+public class PlayerEntity extends Entity {
+  public PlayerEntity(float x, float y, float width, float height) {
+    super("player");
+    AddComponent(new SpriteImageComponent("player.png", x, y, width, height));
   }
-
-  @Override
-  public void show() {}
-
-  @Override
-  public void render(float delta) {}
-
-  @Override
-  public void resize(int width, int height) {
-    game.viewport.update(width, height, true);
-  }
-
-  @Override
-  public void pause() {}
-
-  @Override
-  public void resume() {}
-
-  @Override
-  public void hide() {}
-
-  @Override
-  public void dispose() {}
 }

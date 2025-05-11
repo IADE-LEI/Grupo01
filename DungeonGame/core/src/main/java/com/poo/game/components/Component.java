@@ -4,16 +4,10 @@
  * Projeto : Dungeon Game (Projeto Grupo 1)
  * Disciplica : Programação e Algoritmos (LEI1A2S)
  * Professor : Nelson Costa
- * Autores : Affonso Neto | António Neto | Paulo Jadaugy | Tomás Pereira
+ * Autores : Affonso Neto | António Neto | Paulo Jadaugy | Tiago Araújo | Tomás Pereira
  * ------------------------------------------------------------------------------------------------
  */
-package com.poo.game.elements;
+package com.poo.game.components;
 
-import com.badlogic.gdx.graphics.Color;
-
-public class Wall extends MapElement {
-
-  public Wall(float x, float y, float width, float height) {
-    super(Color.BLACK, "wall", x, y, width, height);
-  }
-}
+/** Base class for components */
+public abstract class Component {}

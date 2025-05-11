@@ -4,12 +4,12 @@
  * Projeto : Dungeon Game (Projeto Grupo 1)
  * Disciplica : Programação e Algoritmos (LEI1A2S)
  * Professor : Nelson Costa
- * Autores : Affonso Neto | António Neto | Paulo Jadaugy | Tomás Pereira
+ * Autores : Affonso Neto | António Neto | Paulo Jadaugy | Tiago Araújo | Tomás Pereira
  * ------------------------------------------------------------------------------------------------
  */
 package com.poo.game.map;
 
-import com.poo.game.elements.Floor;
+import com.poo.game.entities.FloorEntity;
 
 public class BSPMapGenerator {
   private final MapData mapData;
@@ -61,7 +61,7 @@ public class BSPMapGenerator {
 
     for (int x = room.getX(); x < room.getX() + room.getWidth(); x++) {
       for (int y = room.getY(); y < room.getY() + room.getHeight(); y++) {
-        mapData.setTile(x, y, new Floor(x, y, 1, 1));
+        mapData.setTile(x, y, new FloorEntity(x, y, 1, 1));
       }
     }
   }

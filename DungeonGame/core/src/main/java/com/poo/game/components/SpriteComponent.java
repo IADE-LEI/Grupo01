@@ -7,36 +7,32 @@
  * Autores : Affonso Neto | António Neto | Paulo Jadaugy | Tiago Araújo | Tomás Pereira
  * ------------------------------------------------------------------------------------------------
  */
+package com.poo.game.components;
 
-package com.poo.game;
-
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.math.Vector2;
 
-/** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
-public class Main extends ApplicationAdapter {
-  private SpriteBatch batch;
-  private Texture image;
+public class SpriteComponent extends Component {
+  Vector2 size;
 
-  @Override
-  public void create() {
-    batch = new SpriteBatch();
-    image = new Texture("image\\libgdx.png");
+  protected Texture texture;
+  protected Sprite sprite;
+
+  public Sprite getSprite() {
+    return sprite;
   }
 
-  @Override
-  public void render() {
-    ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
-    batch.begin();
-    batch.draw(image, 140, 210);
-    batch.end();
+  public Vector2 getSize() {
+    return size;
   }
 
-  @Override
-  public void dispose() {
-    batch.dispose();
-    image.dispose();
+  public Vector2 getPosition() {
+    return new Vector2(sprite.getX(), sprite.getY());
+  }
+
+  public void draw(SpriteBatch batch) {
+    sprite.draw(batch);
   }
 }

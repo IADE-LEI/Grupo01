@@ -4,16 +4,18 @@
  * Projeto : Dungeon Game (Projeto Grupo 1)
  * Disciplica : Programação e Algoritmos (LEI1A2S)
  * Professor : Nelson Costa
- * Autores : Affonso Neto | António Neto | Paulo Jadaugy | Tomás Pereira
+ * Autores : Affonso Neto | António Neto | Paulo Jadaugy | Tiago Araújo | Tomás Pereira
  * ------------------------------------------------------------------------------------------------
  */
-package com.poo.game.elements;
+package com.poo.game.entities;
 
 import com.badlogic.gdx.graphics.Color;
+import com.poo.game.components.SpriteColorComponent;
 
-public class Floor extends MapElement {
-
-  public Floor(float x, float y, float width, float height) {
-    super(Color.GRAY, "floor", x, y, width, height);
+/** Floor entity (ECS - Entity) */
+public class FloorEntity extends Entity {
+  public FloorEntity(float x, float y, float width, float height) {
+    super("floor");
+    AddComponent(new SpriteColorComponent(Color.GRAY, x, y, width, height));
   }
 }
