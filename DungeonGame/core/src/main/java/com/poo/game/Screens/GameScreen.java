@@ -56,7 +56,7 @@ public class GameScreen extends BaseScreen {
 
         dungeonScene.UpdateWorld(delta);
 
-        ScreenUtils.clear(Color.PINK);
+        ScreenUtils.clear(Color.BLACK);
         game.viewport.apply();
 
         dungeonScene.RenderWorld();
