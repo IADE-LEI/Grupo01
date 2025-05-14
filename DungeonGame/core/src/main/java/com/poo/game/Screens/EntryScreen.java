@@ -73,10 +73,10 @@ public class EntryScreen extends BaseScreen {
         game.batch.begin();
         game.batch.draw(backgroundTexture,0,0,DungeonGame.ViewportWidth,DungeonGame.ViewportHeight);
         //game.batch.draw(backgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        game.font.draw(game.batch, "Welcome to the Dungeon Game ", 15, 20);
-        game.font.draw(game.batch, "Play (F2)", 15, 15);
-        game.font.draw(game.batch, "Options (F10)", 15, 10);
-        game.font.draw(game.batch, "Exit (ESC)", 15, 5);
+        game.font.draw(game.batch, "Welcome to the Dungeon Game ", 10, 12);
+        game.font.draw(game.batch, "Play (F2)", 10, 11);
+        game.font.draw(game.batch, "Options (F10)", 10, 10);
+        game.font.draw(game.batch, "Exit (ESC)", 10, 9);
 
         game.batch.end();
     }
