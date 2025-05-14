@@ -1,5 +1,6 @@
 audio/music/main.ogg
 font/DragonHunter.otf
+image/GridLayout.png
 image/entry-background.jpg
 image/libgdx.png
 image/player.png

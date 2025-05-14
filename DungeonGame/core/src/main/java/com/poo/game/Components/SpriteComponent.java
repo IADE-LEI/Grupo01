@@ -7,38 +7,32 @@
  * Autores : Affonso Neto | António Neto | Paulo Jadaugy | Tiago Araújo | Tomás Pereira
  * ------------------------------------------------------------------------------------------------
  */
-package com.poo.game.screens;
+package com.poo.game.Components;
 
-import com.badlogic.gdx.Screen;
-import com.poo.game.DungeonGame;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 
-public class BaseScreen implements Screen {
-  protected final DungeonGame game;
+public class SpriteComponent extends Component {
+  Vector2 size;
 
-  BaseScreen(DungeonGame game) {
-    this.game = game;
+  protected Texture texture;
+  protected Sprite sprite;
+
+  public Sprite getSprite() {
+    return sprite;
   }
 
-  @Override
-  public void show() {}
-
-  @Override
-  public void render(float delta) {}
-
-  @Override
-  public void resize(int width, int height) {
-    game.viewport.update(width, height, true);
+  public Vector2 getSize() {
+    return size;
   }
 
-  @Override
-  public void pause() {}
+  public Vector2 getPosition() {
+    return new Vector2(sprite.getX(), sprite.getY());
+  }
 
-  @Override
-  public void resume() {}
-
-  @Override
-  public void hide() {}
-
-  @Override
-  public void dispose() {}
+  public void draw(SpriteBatch batch) {
+    sprite.draw(batch);
+  }
 }

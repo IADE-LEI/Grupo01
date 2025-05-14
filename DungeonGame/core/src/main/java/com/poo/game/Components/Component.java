@@ -7,7 +7,7 @@
  * Autores : Affonso Neto | António Neto | Paulo Jadaugy | Tiago Araújo | Tomás Pereira
  * ------------------------------------------------------------------------------------------------
  */
-package com.poo.game.components;
+package com.poo.game.Components;
 
 /** Base class for components */
 public abstract class Component {}

@@ -7,15 +7,38 @@
  * Autores : Affonso Neto | António Neto | Paulo Jadaugy | Tiago Araújo | Tomás Pereira
  * ------------------------------------------------------------------------------------------------
  */
-package com.poo.game.entities;
+package com.poo.game.Screens;
 
-import com.badlogic.gdx.graphics.Color;
-import com.poo.game.components.SpriteColorComponent;
+import com.badlogic.gdx.Screen;
+import com.poo.game.DungeonGame;
 
-/** Floor entity (ECS - Entity) */
-public class FloorEntity extends Entity {
-  public FloorEntity(float x, float y, float width, float height) {
-    super("floor");
-    AddComponent(new SpriteColorComponent(Color.GRAY, x, y, width, height));
+public class BaseScreen implements Screen {
+  protected final DungeonGame game;
+
+  BaseScreen(DungeonGame game) {
+    this.game = game;
   }
+
+  @Override
+  public void show() {}
+
+  @Override
+  public void render(float delta) {}
+
+  @Override
+  public void resize(int width, int height) {
+    game.viewport.update(width, height, true);
+  }
+
+  @Override
+  public void pause() {}
+
+  @Override
+  public void resume() {}
+
+  @Override
+  public void hide() {}
+
+  @Override
+  public void dispose() {}
 }

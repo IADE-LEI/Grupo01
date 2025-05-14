@@ -7,24 +7,20 @@
  * Autores : Affonso Neto | António Neto | Paulo Jadaugy | Tiago Araújo | Tomás Pereira
  * ------------------------------------------------------------------------------------------------
  */
-package com.poo.game.components;
+package com.poo.game.Components;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
 /** Component to work with Sprinte (ECS - Component) */
-public class SpriteColorComponent extends SpriteComponent {
+public class SpriteImageComponent extends SpriteComponent {
+  String imageName;
 
-  public SpriteColorComponent(Color color, float x, float y, float width, float height) {
+  public SpriteImageComponent(String imageName, float x, float y, float width, float height) {
     this.size = new Vector2(width, height);
-    Pixmap pm = new Pixmap(16, 16, Pixmap.Format.RGBA8888);
-    pm.setColor(color);
-    pm.fill();
-    this.texture = new Texture(pm);
-    pm.dispose();
+    this.imageName = imageName;
+    this.texture = new Texture("image\\" + imageName);
     this.sprite = new Sprite(texture);
     this.sprite.setSize(size.x, size.y);
     this.sprite.setPosition(x, y);

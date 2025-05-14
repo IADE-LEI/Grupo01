@@ -7,9 +7,9 @@
  * Autores : Affonso Neto | António Neto | Paulo Jadaugy | Tiago Araújo | Tomás Pereira
  * ------------------------------------------------------------------------------------------------
  */
-package com.poo.game.map;
+package com.poo.game.Map;
 
-/** Room defenition for map */
+/** Room definition for map */
 public class Room {
   private final int x;
   private final int y;
