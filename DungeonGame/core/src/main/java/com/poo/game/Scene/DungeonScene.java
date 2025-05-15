@@ -24,7 +24,7 @@ public class DungeonScene {
     public MapData Map;
 
     public void CreateWorld() {
-        BSPMapGenerator generator = new BSPMapGenerator(worldWidth, worldHeight, 5, 8, 4);
+        BSPMapGenerator generator = new BSPMapGenerator(worldWidth, worldHeight, 5, 10, 4);
         Map = generator.generate();
 
         // Debug The Grid
@@ -62,11 +62,11 @@ public class DungeonScene {
         }
 
         //Debug Sprite
-        for (int Y = 0; Y < worldHeight; ++Y) {
-            for (int X = 0; X < worldWidth; ++X) {
-                spriteBatch.draw(GridLayoutSprite, X, Y, 1, 1);
-            }
-        }
+//        for (int Y = 0; Y < worldHeight; ++Y) {
+//            for (int X = 0; X < worldWidth; ++X) {
+//                spriteBatch.draw(GridLayoutSprite, X, Y, 1, 1);
+//            }
+//        }
 
         spriteBatch.end();
     }

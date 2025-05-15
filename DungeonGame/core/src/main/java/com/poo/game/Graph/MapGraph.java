@@ -25,7 +25,7 @@ public class MapGraph {
 
     public MapNode GetFirstNode()
     {
-        if(Nodes!=null && Nodes.size()>0)
+        if(Nodes!=null && !Nodes.isEmpty())
             return Nodes.get(0);
         return null;
     }
