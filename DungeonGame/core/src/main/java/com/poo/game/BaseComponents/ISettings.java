@@ -7,15 +7,20 @@
  * Autores : Affonso Neto | António Neto | Paulo Jadaugy | Tiago Araújo | Tomás Pereira
  * ------------------------------------------------------------------------------------------------
  */
-package com.poo.game;
+package com.poo.game.BaseComponents;
 
-public class Constants {
-  /** Path of file for Buttons skin configuration */
-  public static final String BUTTON_SKIN = "skin/button/Button.atlas";
+import java.util.prefs.BackingStoreException;
 
-  /** Preference property name for music */
-  public static final String PREF_MUSIC = "PlayMusic";
+public interface ISettings {
+  boolean getPlayMusic();
 
-  /** Preference property name for player turno move */
-  public static final String PREF_TURBO = "MoveTurbo";
+  void setPlayMusic(boolean value);
+
+  float getMoveTurbo();
+
+  void setMoveTurbo(float value);
+
+  void Load();
+
+  void Save() throws BackingStoreException;
 }

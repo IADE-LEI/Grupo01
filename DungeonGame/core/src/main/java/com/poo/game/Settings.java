@@ -7,21 +7,22 @@
  * Autores : Affonso Neto | António Neto | Paulo Jadaugy | Tiago Araújo | Tomás Pereira
  * ------------------------------------------------------------------------------------------------
  */
-
 package com.poo.game;
+
+import com.poo.game.BaseComponents.ISettings;
 
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
-/** Global options of game saved on applications preferences */
-public class GameOptions {
+/** Global settings of game saved on applications preferences */
+public class Settings implements ISettings {
   private final Preferences prefs;
   private boolean playMusic;
   private float moveTurbo;
 
-  GameOptions() {
-    this.prefs = Preferences.userNodeForPackage(GameOptions.class);
-    LoadOptions();
+  Settings() {
+    this.prefs = Preferences.userNodeForPackage(Settings.class);
+    this.Load();
   }
 
   public boolean getPlayMusic() {
@@ -40,16 +41,16 @@ public class GameOptions {
     this.moveTurbo = value;
   }
 
-  /** Load options values from application preferences */
-  public void LoadOptions() {
-    this.playMusic = this.prefs.getBoolean("PlayMusic", true);
-    this.moveTurbo = this.prefs.getFloat("MoveTurbo", 4f);
+  /** Load settings values from application preferences */
+  public void Load() {
+    this.playMusic = this.prefs.getBoolean(Constants.PREF_MUSIC, true);
+    this.moveTurbo = this.prefs.getFloat(Constants.PREF_TURBO, 4f);
   }
 
-  /** Save options values to application preferences */
-  public void SaveOptions() throws BackingStoreException {
-    this.prefs.putBoolean("PlayMusic", this.playMusic);
-    this.prefs.putFloat("MoveTurbo", this.moveTurbo);
+  /** Save settings values to application preferences */
+  public void Save() throws BackingStoreException {
+    this.prefs.putBoolean(Constants.PREF_TURBO, this.playMusic);
+    this.prefs.putFloat(Constants.PREF_TURBO, this.moveTurbo);
     this.prefs.flush();
   }
 }

@@ -1,0 +1,10 @@
+Button.png
+size:512,256
+repeat:none
+button
+bounds:2,2,291,64
+button-over
+bounds:2,66,291,64
+button-down
+bounds:2,130,291,64
+

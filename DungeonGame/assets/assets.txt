@@ -4,8 +4,6 @@ image/GridLayout.png
 image/entry-background.jpg
 image/libgdx.png
 image/player.png
-skin/button/font-big-export.fnt
-skin/button/font-export.fnt
-skin/button/glassy-ui.atlas
-skin/button/glassy-ui.json
-skin/button/glassy-ui.png
+skin/button/Button.atlas
+skin/button/Button.png
+skin/button/Dungeon.ttf

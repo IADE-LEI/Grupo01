@@ -15,82 +15,83 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.poo.game.BaseComponents.ISettings;
 import com.poo.game.Screens.EntryScreen;
 import com.poo.game.Screens.GameScreen;
-import com.poo.game.Screens.OptionsScreen;
+import com.poo.game.Screens.SettingsScreen;
 
 public class DungeonGame extends Game {
-    public static int worldWidth = 50;
-    public static int worldHeight = 50;
-    public static int ViewportWidth = 20;
-    public static int ViewportHeight = 20;
-    public static int WindowSizeX = 980;
-    public static int WindowSizeY = 960;
+  public static int worldWidth = 50;
+  public static int worldHeight = 50;
+  public static int ViewportWidth = 20;
+  public static int ViewportHeight = 20;
+  public static int WindowSizeX = 980;
+  public static int WindowSizeY = 960;
 
-    public SpriteBatch batch;
-    public BitmapFont font;
-    Music mainMusic;
-    public FitViewport viewport;
+  public SpriteBatch batch;
+  public BitmapFont font;
+  Music mainMusic;
+  public FitViewport viewport;
 
-    public GameOptions gameOptions;
+  public ISettings gameSettings;
 
-    public void create() {
+  public void create() {
 
-        batch = new SpriteBatch();
+    batch = new SpriteBatch();
 
-        viewport = new FitViewport(ViewportWidth, ViewportHeight);
+    viewport = new FitViewport(ViewportWidth, ViewportHeight);
 
-        // Using libGDX default font
-        font = new BitmapFont();
-        // font has 15pt, but we need to scale it to our viewport by ratio of
-        // viewport height to screen height
-        font.setUseIntegerPositions(false);
-        font.getData().setScale(viewport.getWorldHeight() / Gdx.graphics.getHeight());
+    // Using libGDX default font
+    font = new BitmapFont();
+    // font has 15pt, but we need to scale it to our viewport by ratio of
+    // viewport height to screen height
+    font.setUseIntegerPositions(false);
+    font.getData().setScale(viewport.getWorldHeight() / Gdx.graphics.getHeight());
 
-        // options for game (start with defaults)
-        this.gameOptions = new GameOptions();
+    // options for game (start with defaults)
+    this.gameSettings = new Settings();
 
-        // main music on game
-        this.mainMusic = Gdx.audio.newMusic(Gdx.files.internal("audio/music/main.ogg"));
-        this.mainMusic.setLooping(true);
+    // main music on game
+    this.mainMusic = Gdx.audio.newMusic(Gdx.files.internal("audio/music/main.ogg"));
+    this.mainMusic.setLooping(true);
 
-        gotoEntryScreen();
+    gotoEntryScreen();
+  }
+
+  public void render() {
+    // important
+    super.render();
+
+    if (gameSettings.getPlayMusic()) {
+      mainMusic.setVolume(0.1f);
+      mainMusic.play();
+    } else {
+      mainMusic.stop();
     }
+  }
 
-    public void render() {
-        // important
-        super.render();
+  public void gotoEntryScreen() {
+    EntryScreen screen = new EntryScreen(this);
+    this.setScreen(screen);
+  }
 
-        if (gameOptions.getPlayMusic()) {
-            mainMusic.setVolume(0.1f);
-            mainMusic.play();
-        } else {
-            mainMusic.stop();
-        }
-    }
+  public void gotoGameScreen() {
+    GameScreen screen = new GameScreen(this);
+    this.setScreen(screen);
+  }
 
-    public void gotoEntryScreen() {
-        EntryScreen screen = new EntryScreen(this);
-        this.setScreen(screen);
-    }
+  public void gotoSettingsScreen() {
+    SettingsScreen screen = new SettingsScreen(this);
+    this.setScreen(screen);
+  }
 
-    public void gotoGameScreen() {
-        GameScreen screen = new GameScreen(this);
-        this.setScreen(screen);
-    }
+  public void exit() {
+    Gdx.app.exit();
+  }
 
-    public void gotoOptionsScreen() {
-        OptionsScreen screen = new OptionsScreen(this);
-        this.setScreen(screen);
-    }
-
-    public void exit() {
-        Gdx.app.exit();
-    }
-
-    public void dispose() {
-        font.dispose();
-        mainMusic.dispose();
-        getScreen().dispose();
-    }
+  public void dispose() {
+    font.dispose();
+    mainMusic.dispose();
+    getScreen().dispose();
+  }
 }
