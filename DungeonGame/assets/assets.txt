@@ -1,9 +1,12 @@
 audio/music/main.ogg
-font/DragonHunter.otf
+font/Dungeon.ttf
 image/GridLayout.png
 image/entry-background.jpg
 image/libgdx.png
 image/player.png
-skin/button/Button.atlas
-skin/button/Button.png
-skin/button/Dungeon.ttf
+skin/button.atlas
+skin/button.png
+skin/default.fnt
+skin/uiskin.atlas
+skin/uiskin.json
+skin/uiskin.png

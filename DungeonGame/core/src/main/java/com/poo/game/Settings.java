@@ -17,7 +17,9 @@ import java.util.prefs.Preferences;
 /** Global settings of game saved on applications preferences */
 public class Settings implements ISettings {
   private final Preferences prefs;
+
   private boolean playMusic;
+  private float soundVolume;
   private float moveTurbo;
 
   Settings() {
@@ -33,6 +35,14 @@ public class Settings implements ISettings {
     this.playMusic = value;
   }
 
+  public float getSoundVolume() {
+    return this.soundVolume;
+  }
+
+  public void setSoundVolume(float value) {
+    this.soundVolume = value;
+  }
+
   public float getMoveTurbo() {
     return this.moveTurbo;
   }
@@ -44,12 +54,14 @@ public class Settings implements ISettings {
   /** Load settings values from application preferences */
   public void Load() {
     this.playMusic = this.prefs.getBoolean(Constants.PREF_MUSIC, true);
+    this.soundVolume = this.prefs.getFloat(Constants.PREF_SOUND, 0.1f);
     this.moveTurbo = this.prefs.getFloat(Constants.PREF_TURBO, 4f);
   }
 
   /** Save settings values to application preferences */
   public void Save() throws BackingStoreException {
     this.prefs.putBoolean(Constants.PREF_TURBO, this.playMusic);
+    this.prefs.putFloat(Constants.PREF_SOUND, this.soundVolume);
     this.prefs.putFloat(Constants.PREF_TURBO, this.moveTurbo);
     this.prefs.flush();
   }

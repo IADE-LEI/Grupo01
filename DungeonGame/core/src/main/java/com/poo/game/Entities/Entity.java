@@ -26,14 +26,14 @@ public class Entity {
     public String EntityName;
     public List<Integer> EntityTags;
 
-    public DungeonScene DungeonScene = null;
+    public DungeonScene DungeonScene;
 
     //List of component data for entity
-    ArrayList<AEntityComponent> EntityComponents = null;
+    ArrayList<AEntityComponent> EntityComponents;
 
     // Cache These For Faster Processing
-    private ArrayList<IUpdatableComponent> UpdateableComponents = new ArrayList<>();
-    private ArrayList<IRenderableComponent> RenderableComponents = new ArrayList<>();
+    private final ArrayList<IUpdatableComponent> UpdateableComponents = new ArrayList<>();
+    private final ArrayList<IRenderableComponent> RenderableComponents = new ArrayList<>();
 
     public Entity(DungeonScene DungeonScene, String EntityName, List<Integer> EntityTags)
     {

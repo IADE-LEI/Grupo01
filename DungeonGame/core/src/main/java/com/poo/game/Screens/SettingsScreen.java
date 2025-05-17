@@ -13,25 +13,30 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.poo.game.Constants;
 import com.poo.game.DungeonGame;
+import com.poo.game.Utils.FontHelper;
 
 import java.util.prefs.BackingStoreException;
 
 public class SettingsScreen extends BaseScreen implements Screen {
-  TextButton.TextButtonStyle buttonStyle;
-  TextureAtlas atlas;
+  ScreenViewport viewport;
+  CheckBox musicCheckBox;
+  Slider soundVolumeSlider;
+  Slider turboSlider;
   Button saveButton;
   Button cancelButton;
-  Skin skin;
-  ScreenViewport viewport;
+  Skin buttonSkin;
+  Skin uiSkin;
   Stage stage;
 
   public SettingsScreen(final DungeonGame game) {
@@ -63,18 +68,22 @@ public class SettingsScreen extends BaseScreen implements Screen {
 
   @Override
   public void show() {
-    // Default skin for buttons
-    skin = new Skin();
-    atlas = new TextureAtlas(Constants.BUTTON_SKIN);
-    skin.addRegions(atlas);
+    // Skin for UI componente (wihout buttons)
+    uiSkin = new Skin(Gdx.files.internal(Constants.UI_SKIN));
+
+    // Skin for buttons
+    buttonSkin = new Skin();
+    TextureAtlas atlas = new TextureAtlas(Constants.BUTTON_SKIN);
+    buttonSkin.addRegions(atlas);
 
     // Buttons Style
-    buttonStyle = new TextButton.TextButtonStyle();
-    buttonStyle.up = skin.getDrawable("button");
-    buttonStyle.over = skin.getDrawable("button-over");
-    buttonStyle.down = skin.getDrawable("button-down");
-    buttonStyle.font = new BitmapFont();
+    TextButton.TextButtonStyle buttonStyle = new TextButton.TextButtonStyle();
+    buttonStyle.up = buttonSkin.getDrawable("button");
+    buttonStyle.over = buttonSkin.getDrawable("button-over");
+    buttonStyle.down = buttonSkin.getDrawable("button-down");
+    buttonStyle.font = FontHelper.FontFromTtf("Dungeon.ttf", 32);
 
+    // Buttons
     saveButton = new TextButton("Save (F10)", buttonStyle);
     saveButton.setSize(192, 48);
     saveButton.setPosition(Gdx.graphics.getWidth() - saveButton.getWidth() - 5, 6);
@@ -112,14 +121,78 @@ public class SettingsScreen extends BaseScreen implements Screen {
         });
 
     // main table to fill the screen
-    Table table = new Table();
-    table.setFillParent(true);
-    stage.addActor(table);
+    boolean tableDebug = true;
 
-    table.add(cancelButton).fillY().uniformY();
-    table.row().pad(0, 10, 0, 10);
-    table.row();
-    table.add(saveButton).fillY().uniformY();
+    // styles for labels (title & options)
+    Label.LabelStyle titleStyle = new Label.LabelStyle();
+    titleStyle.font = FontHelper.FontFromTtf("Dungeon.ttf", 54);
+    Label.LabelStyle labelStyle = new Label.LabelStyle();
+    labelStyle.font = FontHelper.FontFromTtf("Dungeon.ttf", 45);
+
+    // title
+    HorizontalGroup titleGroup = new HorizontalGroup();
+    titleGroup.align(Align.top);
+    titleGroup.padTop(25);
+    Label title = new Label("Game Settings", titleStyle);
+    titleGroup.addActor(title);
+    titleGroup.setVisible(true);
+
+    // music group
+    HorizontalGroup musicGroup = new HorizontalGroup();
+    musicGroup.align(Align.top);
+    musicGroup.padTop(128);
+    musicGroup.space(15);
+    Label musicLabel = new Label("Music", labelStyle);
+    musicCheckBox = new CheckBox("", uiSkin);
+    musicCheckBox.setChecked(game.gameSettings.getPlayMusic());
+    musicGroup.addActor(musicLabel);
+    musicGroup.addActor(musicCheckBox);
+    musicGroup.setVisible(true);
+
+    // sound group
+    HorizontalGroup soundGroup = new HorizontalGroup();
+    soundGroup.align(Align.top);
+    soundGroup.padTop(192);
+    soundGroup.space(15);
+    Label soundVolumeLabel = new Label("Sound", labelStyle);
+    soundVolumeSlider = new Slider(0, 1, 0.1f, false, uiSkin);
+    soundVolumeSlider.setValue(game.gameSettings.getSoundVolume());
+    soundGroup.addActor(soundVolumeLabel);
+    soundGroup.addActor(soundVolumeSlider);
+    soundGroup.setVisible(true);
+
+    // turbo group
+    HorizontalGroup turboGroup = new HorizontalGroup();
+    turboGroup.align(Align.top);
+    turboGroup.padTop(256);
+    turboGroup.space(15);
+    Label turboLabel = new Label("Turbo", labelStyle);
+    turboSlider = new Slider(0, 15, 1, false, uiSkin);
+    turboSlider.setValue(game.gameSettings.getMoveTurbo());
+    turboGroup.addActor(turboLabel);
+    turboGroup.addActor(turboSlider);
+    turboGroup.setVisible(true);
+
+    // buttons group
+    HorizontalGroup buttonsGroup = new HorizontalGroup();
+    buttonsGroup.setDebug(tableDebug);
+    buttonsGroup.setFillParent(true);
+    buttonsGroup.align(Align.bottom);
+    buttonsGroup.space(15);
+    buttonsGroup.padBottom(25);
+    buttonsGroup.addActor(cancelButton);
+    buttonsGroup.addActor(saveButton);
+
+    // main stack
+    Stack stack = new Stack();
+    stack.setDebug(tableDebug);
+    stack.setFillParent(true);
+    stack.addActor(buttonsGroup);
+    stack.addActor(musicGroup);
+    stack.addActor(soundGroup);
+    stack.addActor(turboGroup);
+    stack.addActor(titleGroup);
+    stage.addActor(stack);
   }
 
   @Override
@@ -137,13 +210,15 @@ public class SettingsScreen extends BaseScreen implements Screen {
 
   @Override
   public void dispose() {
-    skin.dispose();
+    buttonSkin.dispose();
+    uiSkin.dispose();
     stage.dispose();
   }
 
   private void saveSettings() {
-    game.gameSettings.setPlayMusic(true);
-    game.gameSettings.setMoveTurbo(4f);
+    game.gameSettings.setPlayMusic(musicCheckBox.isChecked());
+    game.gameSettings.setSoundVolume(soundVolumeSlider.getValue());
+    game.gameSettings.setMoveTurbo(turboSlider.getValue());
     try {
       game.gameSettings.Save();
     } catch (BackingStoreException e) {

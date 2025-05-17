@@ -49,11 +49,11 @@ public class DungeonGame extends Game {
     font.getData().setScale(viewport.getWorldHeight() / Gdx.graphics.getHeight());
 
     // options for game (start with defaults)
-    this.gameSettings = new Settings();
+    gameSettings = new Settings();
 
     // main music on game
-    this.mainMusic = Gdx.audio.newMusic(Gdx.files.internal("audio/music/main.ogg"));
-    this.mainMusic.setLooping(true);
+    mainMusic = Gdx.audio.newMusic(Gdx.files.internal("audio/music/main.ogg"));
+    mainMusic.setLooping(true);
 
     gotoEntryScreen();
   }
@@ -63,7 +63,7 @@ public class DungeonGame extends Game {
     super.render();
 
     if (gameSettings.getPlayMusic()) {
-      mainMusic.setVolume(0.1f);
+      mainMusic.setVolume(gameSettings.getSoundVolume());
       mainMusic.play();
     } else {
       mainMusic.stop();
@@ -72,17 +72,17 @@ public class DungeonGame extends Game {
 
   public void gotoEntryScreen() {
     EntryScreen screen = new EntryScreen(this);
-    this.setScreen(screen);
+    setScreen(screen);
   }
 
   public void gotoGameScreen() {
     GameScreen screen = new GameScreen(this);
-    this.setScreen(screen);
+    setScreen(screen);
   }
 
   public void gotoSettingsScreen() {
     SettingsScreen screen = new SettingsScreen(this);
-    this.setScreen(screen);
+    setScreen(screen);
   }
 
   public void exit() {

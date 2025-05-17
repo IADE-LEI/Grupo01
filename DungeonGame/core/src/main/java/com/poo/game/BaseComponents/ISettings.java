@@ -16,6 +16,10 @@ public interface ISettings {
 
   void setPlayMusic(boolean value);
 
+  float getSoundVolume();
+
+  void setSoundVolume(float value);
+
   float getMoveTurbo();
 
   void setMoveTurbo(float value);
