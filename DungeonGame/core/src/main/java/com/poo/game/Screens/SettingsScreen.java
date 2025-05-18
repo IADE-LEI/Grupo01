@@ -35,6 +35,7 @@ public class SettingsScreen extends BaseScreen implements Screen {
   Slider turboSlider;
   Button saveButton;
   Button cancelButton;
+  TextureAtlas atlas;
   Skin buttonSkin;
   Skin uiSkin;
   Stage stage;
@@ -73,7 +74,7 @@ public class SettingsScreen extends BaseScreen implements Screen {
 
     // Skin for buttons
     buttonSkin = new Skin();
-    TextureAtlas atlas = new TextureAtlas(Constants.BUTTON_SKIN);
+    atlas = new TextureAtlas(Constants.BUTTON_SKIN);
     buttonSkin.addRegions(atlas);
 
     // Buttons Style
@@ -119,9 +120,6 @@ public class SettingsScreen extends BaseScreen implements Screen {
             super.touchUp(event, x, y, pointer, button);
           }
         });
-
-    // main table to fill the screen
-    boolean tableDebug = true;
 
     // styles for labels (title & options)
     Label.LabelStyle titleStyle = new Label.LabelStyle();
@@ -175,7 +173,6 @@ public class SettingsScreen extends BaseScreen implements Screen {
 
     // buttons group
     HorizontalGroup buttonsGroup = new HorizontalGroup();
-    buttonsGroup.setDebug(tableDebug);
     buttonsGroup.setFillParent(true);
     buttonsGroup.align(Align.bottom);
     buttonsGroup.space(15);
@@ -185,7 +182,6 @@ public class SettingsScreen extends BaseScreen implements Screen {
 
     // main stack
     Stack stack = new Stack();
-    stack.setDebug(tableDebug);
     stack.setFillParent(true);
     stack.addActor(buttonsGroup);
     stack.addActor(musicGroup);
@@ -210,6 +206,7 @@ public class SettingsScreen extends BaseScreen implements Screen {
 
   @Override
   public void dispose() {
+    atlas.dispose();
     buttonSkin.dispose();
     uiSkin.dispose();
     stage.dispose();

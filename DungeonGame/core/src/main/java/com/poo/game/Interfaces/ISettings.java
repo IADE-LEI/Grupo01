@@ -7,10 +7,24 @@
  * Autores : Affonso Neto | António Neto | Paulo Jadaugy | Tiago Araújo | Tomás Pereira
  * ------------------------------------------------------------------------------------------------
  */
-package com.poo.game.Utils;
+package com.poo.game.Interfaces;
 
-public class HashString {
-  public static Integer GenerateHashFromString(String StringToHash) {
-    return StringToHash.hashCode();
-  }
+import java.util.prefs.BackingStoreException;
+
+public interface ISettings {
+  boolean getPlayMusic();
+
+  void setPlayMusic(boolean value);
+
+  float getSoundVolume();
+
+  void setSoundVolume(float value);
+
+  float getMoveTurbo();
+
+  void setMoveTurbo(float value);
+
+  void Load();
+
+  void Save() throws BackingStoreException;
 }

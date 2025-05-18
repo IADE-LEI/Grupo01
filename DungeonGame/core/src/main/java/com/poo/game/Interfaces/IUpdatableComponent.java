@@ -7,24 +7,10 @@
  * Autores : Affonso Neto | António Neto | Paulo Jadaugy | Tiago Araújo | Tomás Pereira
  * ------------------------------------------------------------------------------------------------
  */
-package com.poo.game.BaseComponents;
+package com.poo.game.Interfaces;
 
-import java.util.prefs.BackingStoreException;
+public interface IUpdatableComponent {
+  void Update(float DeltaTime);
 
-public interface ISettings {
-  boolean getPlayMusic();
-
-  void setPlayMusic(boolean value);
-
-  float getSoundVolume();
-
-  void setSoundVolume(float value);
-
-  float getMoveTurbo();
-
-  void setMoveTurbo(float value);
-
-  void Load();
-
-  void Save() throws BackingStoreException;
+  boolean CanUpdate();
 }

@@ -9,7 +9,7 @@
  */
 package com.poo.game;
 
-import com.poo.game.BaseComponents.ISettings;
+import com.poo.game.Interfaces.ISettings;
 
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;

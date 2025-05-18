@@ -15,7 +15,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.poo.game.BaseComponents.ISettings;
+import com.poo.game.Interfaces.ISettings;
 import com.poo.game.Screens.EntryScreen;
 import com.poo.game.Screens.GameScreen;
 import com.poo.game.Screens.SettingsScreen;
@@ -30,13 +30,12 @@ public class DungeonGame extends Game {
 
   public SpriteBatch batch;
   public BitmapFont font;
-  Music mainMusic;
   public FitViewport viewport;
-
   public ISettings gameSettings;
 
-  public void create() {
+  Music mainMusic;
 
+  public void create() {
     batch = new SpriteBatch();
 
     viewport = new FitViewport(ViewportWidth, ViewportHeight);

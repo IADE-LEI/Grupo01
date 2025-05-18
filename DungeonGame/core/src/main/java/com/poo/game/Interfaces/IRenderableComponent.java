@@ -7,10 +7,12 @@
  * Autores : Affonso Neto | António Neto | Paulo Jadaugy | Tiago Araújo | Tomás Pereira
  * ------------------------------------------------------------------------------------------------
  */
-package com.poo.game.Utils;
+package com.poo.game.Interfaces;
 
-public class HashString {
-  public static Integer GenerateHashFromString(String StringToHash) {
-    return StringToHash.hashCode();
-  }
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+public interface IRenderableComponent {
+  boolean CanRender();
+
+  void Render(SpriteBatch Batch);
 }

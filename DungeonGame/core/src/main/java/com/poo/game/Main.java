@@ -7,7 +7,6 @@
  * Autores : Affonso Neto | António Neto | Paulo Jadaugy | Tiago Araújo | Tomás Pereira
  * ------------------------------------------------------------------------------------------------
  */
-
 package com.poo.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
