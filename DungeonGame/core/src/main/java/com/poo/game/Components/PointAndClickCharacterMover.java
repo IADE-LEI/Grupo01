@@ -38,7 +38,9 @@ public class PointAndClickCharacterMover extends AEntityComponent implements IUp
 
         Camera = AssignedEntity.DungeonScene.FindFirstEntityWithTag("Camera").GetFirstComponentOfType(CameraComponent.class);
 
-        SpriteRenderer.SetPosition(AssignedEntity.DungeonScene.Map.getStartingPosition());
+        Vector2 startingPosition = MapGraph.GetFirstNode().GetPosition();
+        SpriteRenderer.SetPosition(startingPosition);
+        Camera.UpdateCameraPosition(startingPosition);
     }
 
     private boolean AllowDebugToConsole = true;
@@ -92,6 +94,8 @@ public class PointAndClickCharacterMover extends AEntityComponent implements IUp
             }
 
             MovementDirection = NodeLocation.sub(SpriteLocation).nor();
+            //Update camera position
+            Camera.UpdateCameraPosition(SpriteLocation);
         }
 
         SpriteRenderer.AddPositionDelta(MovementDirection.scl(Speed * DeltaTime));

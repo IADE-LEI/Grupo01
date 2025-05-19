@@ -35,6 +35,11 @@ public class CameraComponent extends AEntityComponent
         return new Vector2(worldCoords.x, worldCoords.y);
     }
 
+    public void UpdateCameraPosition(Vector2 ScreenPoint){
+        RenderCamera.position.set(ScreenPoint.x, ScreenPoint.y, 0);
+        RenderCamera.update();
+    }
+
     public Vector2 ProjectWorldPositionToScreenPosition(Vector2 WorldPoint)
     {
         Vector3 ScreenPosition = RenderCamera().project(new Vector3(WorldPoint.x, WorldPoint.y, 0));
