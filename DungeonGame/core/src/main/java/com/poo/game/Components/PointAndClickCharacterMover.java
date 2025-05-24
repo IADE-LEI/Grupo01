@@ -40,7 +40,7 @@ public class PointAndClickCharacterMover extends AEntityComponent implements IUp
 
         Vector2 startingPosition = MapGraph.GetFirstNode().GetPosition();
         SpriteRenderer.SetPosition(startingPosition);
-        Camera.UpdateCameraPosition(startingPosition);
+        Camera.SetCameraPosition(startingPosition);
     }
 
     private boolean AllowDebugToConsole = true;

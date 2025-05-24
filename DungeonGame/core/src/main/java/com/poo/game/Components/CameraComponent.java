@@ -18,6 +18,9 @@ public class CameraComponent extends AEntityComponent
 {
     OrthographicCamera RenderCamera;
 
+    // Smoothing factor (0.1 = 10% per frame)
+    float cameraLerp = 0.1f;
+
     @Override
     public void Start()
     {
@@ -36,6 +39,13 @@ public class CameraComponent extends AEntityComponent
     }
 
     public void UpdateCameraPosition(Vector2 ScreenPoint){
+        // Apply smoothing
+        RenderCamera.position.lerp(new Vector3(ScreenPoint.x, ScreenPoint.y, 0), cameraLerp);
+        RenderCamera.update();
+    }
+
+    public void SetCameraPosition(Vector2 ScreenPoint){
+        // Apply smoothing
         RenderCamera.position.set(ScreenPoint.x, ScreenPoint.y, 0);
         RenderCamera.update();
     }

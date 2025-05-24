@@ -9,10 +9,7 @@
  */
 package com.poo.game.BaseComponents;
 
-import com.poo.game.Components.CameraComponent;
-import com.poo.game.Components.CameraManualMoverComponent;
-import com.poo.game.Components.PointAndClickCharacterMover;
-import com.poo.game.Components.SpriteRendererComponent;
+import com.poo.game.Components.*;
 import com.poo.game.Entities.Entity;
 import com.poo.game.Utils.HashString;
 import com.poo.game.Scene.DungeonScene;
@@ -30,6 +27,7 @@ public class EntityFactory {
 
     PlayerObject.AddComponent(new SpriteRendererComponent("image\\player.png"));
     PlayerObject.AddComponent(new PointAndClickCharacterMover());
+    PlayerObject.AddComponent(new HealthComponent(100));
 
     return PlayerObject;
   }
