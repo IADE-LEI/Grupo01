@@ -19,8 +19,7 @@ import com.poo.game.Graph.MapNode;
 
 import java.util.List;
 
-public class PointAndClickCharacterMover extends AEntityComponent implements IUpdatableComponent
-{
+public class PointAndClickCharacterMover extends AEntityComponent implements IUpdatableComponent {
     private SpriteRendererComponent SpriteRenderer;
 
     private CameraComponent Camera;
@@ -30,67 +29,55 @@ public class PointAndClickCharacterMover extends AEntityComponent implements IUp
     private List<MapNode> CurrentPath = null;
 
     @Override
-    public void Start()
-    {
+    public void Start() {
         SpriteRenderer = AssignedEntity.GetFirstComponentOfType(SpriteRendererComponent.class);
 
         MapGraph = AssignedEntity.DungeonScene.Map.MapGraph;
 
         Camera = AssignedEntity.DungeonScene.FindFirstEntityWithTag("Camera").GetFirstComponentOfType(CameraComponent.class);
-
-        Vector2 startingPosition = MapGraph.GetFirstNode().GetPosition();
-        SpriteRenderer.SetPosition(startingPosition);
-        Camera.SetCameraPosition(startingPosition);
     }
 
     private boolean AllowDebugToConsole = true;
     float Speed = 10.0f;
 
     @Override
-    public boolean CanUpdate()
-    {
+    public boolean CanUpdate() {
         return IsActive;
     }
 
     @Override
-    public void Update(float DeltaTime)
-    {
+    public void Update(float DeltaTime) {
         Vector2 MovementDirection = new Vector2();
 
-        // Time To Test The Graph! :D
-        if(Gdx.input.isButtonPressed(Input.Buttons.LEFT) && !HasPath())
-        {
+        if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && !HasPath()) {
             CurrentPath = TryFindPath();
 
-            if(CurrentPath == null)
+            if (CurrentPath == null)
                 return;
 
-            if(CurrentPath.size() == 0 )
+            if (CurrentPath.size() == 0)
                 CurrentPath = null;
 
-            if(CurrentPath != null)
+            if (CurrentPath != null)
                 DebugPathToConsole();
         }
 
-        if(HasPath())
-        {
-            while(CurrentPath.size() != 0 && CurrentPath.get(0) == null)
-                CurrentPath.remove(CurrentPath.size()-1);
+        if (HasPath()) {
+            while (CurrentPath.size() != 0 && CurrentPath.get(0) == null)
+                CurrentPath.remove(CurrentPath.size() - 1);
 
-            Vector2 NodeLocation = new Vector2(CurrentPath.get(0).CellX , CurrentPath.get(0).CellY);
+            Vector2 NodeLocation = new Vector2(CurrentPath.get(0).CellX, CurrentPath.get(0).CellY);
             Vector2 SpriteLocation = SpriteRenderer.GetSpritePosition();
 
-            if(Vector2.dst(SpriteLocation.x, SpriteLocation.y, NodeLocation.x, NodeLocation.y) < 0.1f)
-            {
+            if (Vector2.dst(SpriteLocation.x, SpriteLocation.y, NodeLocation.x, NodeLocation.y) < 0.1f) {
                 CurrentPath.remove(0);
 
-                if(CurrentPath.size() == 0)
-                {
+                if (CurrentPath.size() == 0) {
                     CurrentPath = null;
                     return;
                 }
 
-                NodeLocation = new Vector2(CurrentPath.get(0).CellX , CurrentPath.get(0).CellY );
+                NodeLocation = new Vector2(CurrentPath.get(0).CellX, CurrentPath.get(0).CellY);
             }
 
             MovementDirection = NodeLocation.sub(SpriteLocation).nor();
@@ -101,9 +88,8 @@ public class PointAndClickCharacterMover extends AEntityComponent implements IUp
         SpriteRenderer.AddPositionDelta(MovementDirection.scl(Speed * DeltaTime));
     }
 
-    public List<MapNode> TryFindPath()
-    {
-        Vector2 MouseAtScreenPoint = new Vector2(Gdx.input.getX(),  Gdx.input.getY());
+    public List<MapNode> TryFindPath() {
+        Vector2 MouseAtScreenPoint = new Vector2(Gdx.input.getX(), Gdx.input.getY());
         Vector2 MouseAtWorldPoint = Camera.DeprojectScreenPositionToWorldPosition(MouseAtScreenPoint);
 
         return MapGraph.SearchForPath
@@ -111,8 +97,8 @@ public class PointAndClickCharacterMover extends AEntityComponent implements IUp
                 MapGraph.GetNode
                     (
                         // Round To Avoid Weird Floating Point Erros
-                        (int) Math.round( SpriteRenderer.GetSpritePosition().x ),
-                        (int) Math.round( SpriteRenderer.GetSpritePosition().y )
+                        (int) Math.round(SpriteRenderer.GetSpritePosition().x),
+                        (int) Math.round(SpriteRenderer.GetSpritePosition().y)
                     ),
                 MapGraph.GetNode
                     (
@@ -124,26 +110,22 @@ public class PointAndClickCharacterMover extends AEntityComponent implements IUp
     }
 
 
-    public void DebugPathToConsole()
-    {
-        if(!AllowDebugToConsole)
+    public void DebugPathToConsole() {
+        if (!AllowDebugToConsole)
             return;
 
-        for(int i = 0; i < CurrentPath.size(); i++)
-        {
+        for (int i = 0; i < CurrentPath.size(); i++) {
             System.out.println(CurrentPath.get(i).CellX + " " + CurrentPath.get(i).CellY);
         }
 
         System.out.println("");
     }
 
-    public boolean HasPath()
-    {
+    public boolean HasPath() {
         return CurrentPath != null;
     }
 
-    public boolean HasValidMovementVector(Vector2 MovementVector)
-    {
+    public boolean HasValidMovementVector(Vector2 MovementVector) {
         return MovementVector.x != 0 && MovementVector.y != 0;
     }
 

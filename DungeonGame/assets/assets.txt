@@ -1,6 +1,7 @@
 audio/music/main.ogg
 font/Dungeon.ttf
 image/GridLayout.png
+image/door.jpg
 image/entry-background.jpg
 image/libgdx.png
 image/player.png

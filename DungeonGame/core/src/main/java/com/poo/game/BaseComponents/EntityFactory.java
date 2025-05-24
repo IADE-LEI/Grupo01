@@ -15,31 +15,40 @@ import com.poo.game.Utils.HashString;
 import com.poo.game.Scene.DungeonScene;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class EntityFactory {
-  public static Entity CreatePlayerObject(DungeonScene MapSystem) {
-    List<Integer> EntityTags =
-        new ArrayList<>(Collections.singletonList(HashString.GenerateHashFromString("Player")));
-    Entity PlayerObject = new Entity(MapSystem, "Player", EntityTags);
+    public static Entity CreatePlayerObject(DungeonScene MapSystem) {
+        List<Integer> EntityTags =
+            new ArrayList<>(Collections.singletonList(HashString.GenerateHashFromString("Player")));
+        Entity PlayerObject = new Entity(MapSystem, "Player", EntityTags);
 
-    PlayerObject.AddComponent(new SpriteRendererComponent("image\\player.png"));
-    PlayerObject.AddComponent(new PointAndClickCharacterMover());
-    PlayerObject.AddComponent(new HealthComponent(100,100));
+        PlayerObject.AddComponent(new SpriteRendererComponent("image\\player.png"));
+        PlayerObject.AddComponent(new PointAndClickCharacterMover());
+        PlayerObject.AddComponent(new HealthComponent(100, 100));
 
-    return PlayerObject;
-  }
+        return PlayerObject;
+    }
 
-  public static Entity CreateCameraObject(DungeonScene MapSystem) {
-    List<Integer> EntityTags =
-        new ArrayList<>(Collections.singletonList(HashString.GenerateHashFromString("Camera")));
-    Entity CameraEntity = new Entity(MapSystem, "Camera", EntityTags);
+    public static Entity CreateCameraObject(DungeonScene MapSystem) {
+        List<Integer> EntityTags =
+            new ArrayList<>(Collections.singletonList(HashString.GenerateHashFromString("Camera")));
+        Entity CameraEntity = new Entity(MapSystem, "Camera", EntityTags);
 
-    CameraEntity.AddComponent(new CameraComponent());
-    CameraEntity.AddComponent(new CameraManualMoverComponent());
+        CameraEntity.AddComponent(new CameraComponent());
+        CameraEntity.AddComponent(new CameraManualMoverComponent());
 
-    return CameraEntity;
-  }
+        return CameraEntity;
+    }
+
+    public static Entity CreateExitDoorObject(DungeonScene MapSystem) {
+        List<Integer> EntityTags =
+            new ArrayList<>(Collections.singletonList(HashString.GenerateHashFromString("ExitDoor")));
+        Entity DoorObject = new Entity(MapSystem, "ExitDoor", EntityTags);
+        DoorObject.AddComponent(new SpriteRendererComponent("image\\door.jpg"));
+
+
+        return DoorObject;
+    }
 }
