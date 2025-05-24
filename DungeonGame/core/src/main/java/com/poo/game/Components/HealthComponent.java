@@ -8,9 +8,9 @@ public class HealthComponent extends AEntityComponent implements IInteractable {
     private int currentHealth;
     private int maxHealth;
 
-    public HealthComponent(int health) {
+    public HealthComponent(int health, int maxHealth) {
         this.currentHealth = health;
-        this.maxHealth = health;
+        this.maxHealth = maxHealth;
     }
 
     @Override

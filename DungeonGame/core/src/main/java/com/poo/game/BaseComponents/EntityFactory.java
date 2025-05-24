@@ -27,7 +27,7 @@ public class EntityFactory {
 
     PlayerObject.AddComponent(new SpriteRendererComponent("image\\player.png"));
     PlayerObject.AddComponent(new PointAndClickCharacterMover());
-    PlayerObject.AddComponent(new HealthComponent(100));
+    PlayerObject.AddComponent(new HealthComponent(100,100));
 
     return PlayerObject;
   }
