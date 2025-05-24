@@ -32,7 +32,7 @@ public class PointAndClickCharacterMover extends AEntityComponent implements IUp
     public void Start() {
         SpriteRenderer = AssignedEntity.GetFirstComponentOfType(SpriteRendererComponent.class);
 
-        MapGraph = AssignedEntity.DungeonScene.Map.MapGraph;
+        MapGraph = AssignedEntity.DungeonScene.GetMapGraph();
 
         Camera = AssignedEntity.DungeonScene.FindFirstEntityWithTag("Camera").GetFirstComponentOfType(CameraComponent.class);
     }

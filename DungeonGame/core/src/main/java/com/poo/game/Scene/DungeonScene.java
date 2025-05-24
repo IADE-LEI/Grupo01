@@ -16,6 +16,8 @@ import com.poo.game.BaseComponents.EntityFactory;
 import com.poo.game.Components.CameraComponent;
 import com.poo.game.Components.SpriteRendererComponent;
 import com.poo.game.Entities.Entity;
+import com.poo.game.Graph.MapGraph;
+import com.poo.game.Graph.MapNode;
 import com.poo.game.Map.BSPMapGenerator;
 import com.poo.game.Map.MapData;
 import com.poo.game.Map.Room;
@@ -29,13 +31,16 @@ public class DungeonScene {
 
     SpriteBatch spriteBatch;
 
-    ArrayList<Entity> SceneEntities = new ArrayList<>();
-    ArrayList<CameraComponent> Cameras = new ArrayList<>();
+    ArrayList<Entity> SceneEntities;
+    ArrayList<CameraComponent> Cameras;
 
     Texture GridLayoutSprite;
     public MapData Map;
 
     public void CreateWorld() {
+        SceneEntities = new ArrayList<>();
+        Cameras = new ArrayList<>();
+
         BSPMapGenerator generator = new BSPMapGenerator(worldWidth, worldHeight, 5, 10, 4);
         Map = generator.generate();
 
@@ -46,7 +51,7 @@ public class DungeonScene {
 
         Entity camera = EntityFactory.CreateCameraObject(this);
         Entity player = EntityFactory.CreatePlayerObject(this);
-        Entity exitDoor = EntityFactory.CreateExitDoorObject(this);
+        Entity exitDoor = EntityFactory.CreateExitDoorObject(this,player);
 
         SceneEntities.add(camera);
         SceneEntities.add(player);
@@ -70,6 +75,15 @@ public class DungeonScene {
         SpriteRendererComponent doorSprite = exitDoor.GetFirstComponentOfType(SpriteRendererComponent.class);
         Room exitRoom = Map.GetExitRoom();
         doorSprite.SetPosition(new Vector2(exitRoom.getCenterX(), exitRoom.getTopY()));
+
+
+        //Add path so player can go into the door
+        MapNode node = new MapNode();
+        node.CellX = exitRoom.getCenterX();
+        node.CellY = exitRoom.getTopY();
+        MapNode previousNode = Map.MapGraph.GetNode(exitRoom.getCenterX(),exitRoom.getTopY()-1);
+        node.AddTwoWayConnectionTo(previousNode);
+        Map.MapGraph.AddNode(node);
 
 
     }
@@ -104,6 +118,7 @@ public class DungeonScene {
     }
 
     public void DestroyWorld() {
+
     }
 
     public Entity FindFirstEntityWithTag(String Tag) {
@@ -123,5 +138,9 @@ public class DungeonScene {
         for (int i = 0; i < SceneEntities.size(); ++i) {
             SceneEntities.get(i).Update(DeltaTime);
         }
+    }
+
+    public MapGraph GetMapGraph() {
+        return Map.MapGraph;
     }
 }

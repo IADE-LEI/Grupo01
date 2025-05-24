@@ -42,11 +42,13 @@ public class EntityFactory {
         return CameraEntity;
     }
 
-    public static Entity CreateExitDoorObject(DungeonScene MapSystem) {
+    public static Entity CreateExitDoorObject(DungeonScene MapSystem, Entity player) {
         List<Integer> EntityTags =
             new ArrayList<>(Collections.singletonList(HashString.GenerateHashFromString("ExitDoor")));
         Entity DoorObject = new Entity(MapSystem, "ExitDoor", EntityTags);
+
         DoorObject.AddComponent(new SpriteRendererComponent("image\\door.jpg"));
+        DoorObject.AddComponent(new DoorComponent(player));
 
 
         return DoorObject;
