@@ -14,7 +14,6 @@ import com.badlogic.gdx.math.Vector2;
 import java.util.*;
 
 public class MapGraph {
-    boolean UseAStar = true;
 
     // All the map nodes
     ArrayList<MapNode> Nodes = new ArrayList<>();
@@ -47,59 +46,7 @@ public class MapGraph {
 
         if (StartNode.CellX == EndNode.CellX && StartNode.CellY == EndNode.CellY) return null;
 
-        if (UseAStar) return FindAStarPath(StartNode, EndNode);
-
-        return FindShortestPathBFS(Nodes, StartNode, EndNode);
-    }
-
-    public static Vector2 CalculatePositionFromNodes(
-        MapNode StartNode, MapNode EndNode, float NormalizeTime) {
-        return new Vector2(StartNode.CellX, StartNode.CellY)
-            .lerp(new Vector2(EndNode.CellX, EndNode.CellY), NormalizeTime);
-    }
-
-    // BFS Implementation
-    public ArrayList<MapNode> FindShortestPathBFS(
-        ArrayList<MapNode> nodes, MapNode start, MapNode end) {
-        Queue<MapNode> queue = new LinkedList<>();
-        Map<MapNode, MapNode> cameFrom = new HashMap<>();
-        Set<MapNode> visited = new HashSet<>();
-
-        queue.add(start);
-        visited.add(start);
-
-        while (!queue.isEmpty()) {
-            MapNode current = queue.poll();
-
-            if (current.equals(end)) {
-                return ReconstructPathBFS(cameFrom, end);
-            }
-
-            // Check all 4 cardinal neighbors
-            for (MapNode neighbor : current.NeighbouringNodes) {
-                if (!visited.contains(neighbor)) {
-                    visited.add(neighbor);
-                    queue.add(neighbor);
-                    cameFrom.put(neighbor, current);
-                }
-            }
-        }
-
-        return null; // No path found
-    }
-
-    private static ArrayList<MapNode> ReconstructPathBFS(
-        Map<MapNode, MapNode> cameFrom, MapNode end) {
-        ArrayList<MapNode> path = new ArrayList<>();
-        MapNode current = end;
-
-        while (current != null) {
-            path.add(current);
-            current = cameFrom.get(current);
-        }
-
-        Collections.reverse(path);
-        return path;
+        return FindAStarPath(StartNode, EndNode);
     }
 
     // A* Implementation

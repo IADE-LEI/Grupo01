@@ -8,7 +8,7 @@ import com.poo.game.Scene.DungeonScene;
 
 public class DoorComponent extends AEntityComponent implements IUpdatableComponent {
 
-    private Entity Player;
+    private final Entity Player;
 
     public DoorComponent(Entity player) {
         Player = player;

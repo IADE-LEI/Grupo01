@@ -122,6 +122,9 @@ public class Entity {
 
     public Rectangle getBounds() {
         SpriteRendererComponent spriteRendererComponent = this.GetFirstComponentOfType(SpriteRendererComponent.class);
+        if(spriteRendererComponent == null)
+            return null;
+
         return new Rectangle(spriteRendererComponent.SpriteToRender.getX() - 0.5f, spriteRendererComponent.SpriteToRender.getY()  - 0.5f, 1, 1);
     }
 
