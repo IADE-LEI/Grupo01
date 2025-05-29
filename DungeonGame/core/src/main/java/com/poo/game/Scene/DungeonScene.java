@@ -24,8 +24,7 @@ import com.poo.game.Map.Room;
 
 import java.util.ArrayList;
 
-import static com.poo.game.DungeonGame.worldHeight;
-import static com.poo.game.DungeonGame.worldWidth;
+import static com.poo.game.DungeonGame.*;
 
 public class DungeonScene {
 
@@ -56,6 +55,14 @@ public class DungeonScene {
         SceneEntities.add(camera);
         SceneEntities.add(player);
         SceneEntities.add(exitDoor);
+
+        for (int i = 0; i < MaxNrMonsters; ++i) {
+            Entity Monster = EntityFactory.CreateMonsterObject(this,player);
+            SpriteRendererComponent monsterSprite = Monster.GetFirstComponentOfType(SpriteRendererComponent.class);
+            MapNode node = Map.MapGraph.GetRandomNode();
+            monsterSprite.SpriteToRender.setPosition(node.CellX, node.CellY);
+            SceneEntities.add(Monster);
+        }
 
         CameraComponent cameraComponent = camera.GetFirstComponentOfType(CameraComponent.class);
         Cameras.add(cameraComponent);

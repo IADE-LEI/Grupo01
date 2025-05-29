@@ -4,6 +4,7 @@ image/GridLayout.png
 image/door.png
 image/entry-background.jpg
 image/libgdx.png
+image/monster.png
 image/player.png
 skin/Button.atlas
 skin/Button.png

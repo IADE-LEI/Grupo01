@@ -131,11 +131,9 @@ public class BSPMapGenerator {
         List<Room> allRooms = new ArrayList<>();
         collectAllRooms(root, allRooms);
 
-        // Choose the room farthest from the start position (or any other criteria)
+        // Choose the room farthest from the start position
         if (!allRooms.isEmpty()) {
-            return allRooms.get(allRooms.size() - 1); // Simple: last room
-            // Or for farthest room:
-            // return findFarthestRoom(allRooms, startX, startY);
+            return allRooms.get(allRooms.size() - 1);
         }
         return null;
     }

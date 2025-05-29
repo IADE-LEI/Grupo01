@@ -13,6 +13,8 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.util.*;
 
+import static com.badlogic.gdx.math.MathUtils.random;
+
 public class MapGraph {
 
     // All the map nodes
@@ -125,6 +127,10 @@ public class MapGraph {
         return Collections.emptyList();
     }
 
+    public MapNode GetRandomNode() {
+        int randomIndex = random.nextInt(Nodes.size());
+        return Nodes.get(randomIndex);
+    }
     private static List<MapNode> ReconstructPathAStar(
         Map<MapNode, MapNode> cameFrom, MapNode current) {
         List<MapNode> path = new ArrayList<>();

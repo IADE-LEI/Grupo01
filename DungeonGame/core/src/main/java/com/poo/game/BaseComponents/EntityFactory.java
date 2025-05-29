@@ -53,5 +53,15 @@ public class EntityFactory {
         return DoorObject;
     }
 
+    public static Entity CreateMonsterObject(DungeonScene MapSystem, Entity player) {
+        List<Integer> EntityTags =
+            new ArrayList<>(Collections.singletonList(HashString.GenerateHashFromString("Monster")));
+        Entity MonsterObject = new Entity(MapSystem, "Monster", EntityTags);
+
+        MonsterObject.AddComponent(new SpriteRendererComponent("image\\monster.png"));
+
+        return MonsterObject;
+    }
+
 
 }
