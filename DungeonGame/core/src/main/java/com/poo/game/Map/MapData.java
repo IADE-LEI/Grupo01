@@ -33,15 +33,7 @@ public class MapData {
         this.width = width;
         this.height = height;
         this.tiles = new Sprite[width][height];
-        initializeWithWalls();
-    }
 
-    private void initializeWithWalls() {
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                tiles[x][y] = SpriteFactory.CreateSpriteObject(Color.BLACK);
-            }
-        }
     }
 
     public void setTile(int x, int y, Sprite value) {
