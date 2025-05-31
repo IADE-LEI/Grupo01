@@ -37,7 +37,7 @@ public class PointAndClickCharacterMover extends AEntityComponent implements IUp
         Camera = AssignedEntity.DungeonScene.FindFirstEntityWithTag("Camera").GetFirstComponentOfType(CameraComponent.class);
     }
 
-    private boolean AllowDebugToConsole = true;
+    private boolean AllowDebugToConsole = false;
     float Speed = 10.0f;
 
     @Override

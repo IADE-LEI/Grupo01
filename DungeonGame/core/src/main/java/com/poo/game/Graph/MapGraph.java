@@ -9,8 +9,6 @@
  */
 package com.poo.game.Graph;
 
-import com.badlogic.gdx.math.Vector2;
-
 import java.util.*;
 
 import static com.badlogic.gdx.math.MathUtils.random;

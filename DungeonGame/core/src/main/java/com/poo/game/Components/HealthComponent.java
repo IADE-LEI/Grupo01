@@ -1,26 +1,17 @@
 package com.poo.game.Components;
 
 import com.poo.game.BaseComponents.AEntityComponent;
-import com.poo.game.Interfaces.IInteractable;
 
-public class HealthComponent extends AEntityComponent implements IInteractable {
+
+public class HealthComponent extends AEntityComponent  {
 
     private int currentHealth;
-    private int maxHealth;
+    private final int maxHealth;
 
-    public HealthComponent(int health, int maxHealth) {
+    public HealthComponent(int health, int maxHealth, boolean IsActive) {
         this.currentHealth = health;
         this.maxHealth = maxHealth;
-    }
-
-    @Override
-    public boolean CanInteract() {
-        return IsActive;
-    }
-
-    @Override
-    public void Interact(AEntityComponent AEntityComponent) {
-
+        this.IsActive = IsActive;
     }
 
     public int getCurrentHealth() {
@@ -29,6 +20,7 @@ public class HealthComponent extends AEntityComponent implements IInteractable {
 
     public void decreaseHealth(int damage) {
         this.currentHealth -= damage;
+        this.currentHealth = Math.max(0, this.currentHealth);
     }
 
     public void increaseHealth(int potion) {

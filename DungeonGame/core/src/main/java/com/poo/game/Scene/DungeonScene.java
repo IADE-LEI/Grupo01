@@ -21,6 +21,7 @@ import com.poo.game.Graph.MapNode;
 import com.poo.game.Map.BSPMapGenerator;
 import com.poo.game.Map.MapData;
 import com.poo.game.Map.Room;
+import com.poo.game.System.HealthRenderSystem;
 
 import java.util.ArrayList;
 
@@ -44,7 +45,7 @@ public class DungeonScene {
         Map = generator.generate();
 
         // Debug The Grid
-        GridLayoutSprite = (new Texture("image/GridLayout.png"));
+        //GridLayoutSprite = (new Texture("image/GridLayout.png"));
 
         spriteBatch = new SpriteBatch();
 
@@ -120,7 +121,8 @@ public class DungeonScene {
         //                spriteBatch.draw(GridLayoutSprite, X, Y, 1, 1);
         //            }
         //        }
-
+        Entity player = FindFirstEntityWithTag("Player");
+        HealthRenderSystem.RenderHUD(player, spriteBatch);
         spriteBatch.end();
     }
 
@@ -147,7 +149,20 @@ public class DungeonScene {
         }
     }
 
+    public void HandleInteractions() {
+        for (int i = 0; i < SceneEntities.size(); ++i) {
+            SceneEntities.get(i).Interact();
+        }
+    }
+
+
     public MapGraph GetMapGraph() {
         return Map.MapGraph;
+    }
+
+    public CameraComponent GetDefaultCameraComponent() {
+        if (!Cameras.isEmpty())
+            return Cameras.get(0);
+        return null;
     }
 }

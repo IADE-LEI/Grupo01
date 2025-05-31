@@ -14,6 +14,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.poo.game.BaseComponents.AEntityComponent;
 import com.poo.game.Components.SpriteRendererComponent;
 import com.poo.game.Graph.MapGraph;
+import com.poo.game.Interfaces.IInteractable;
 import com.poo.game.Interfaces.IRenderableComponent;
 import com.poo.game.Interfaces.IUpdatableComponent;
 import com.poo.game.Scene.DungeonScene;
@@ -34,9 +35,10 @@ public class Entity {
     // List of component data for entity
     ArrayList<AEntityComponent> EntityComponents;
 
-    // Cache These For Faster Processing
+    // List of components for faster processing
     private final ArrayList<IUpdatableComponent> UpdateableComponents;
     private final ArrayList<IRenderableComponent> RenderableComponents;
+    private final ArrayList<IInteractable> InteractableComponents;
 
     public Entity(DungeonScene DungeonScene, String EntityName, List<Integer> EntityTags) {
         this.EntityName = EntityName;
@@ -45,6 +47,7 @@ public class Entity {
         this.EntityComponents = new ArrayList<>();
         this.UpdateableComponents = new ArrayList<>();
         this.RenderableComponents = new ArrayList<>();
+        this.InteractableComponents = new ArrayList<>();
     }
 
     public List<AEntityComponent> getComponents() {
@@ -75,6 +78,9 @@ public class Entity {
 
         if (ComponentToAdd instanceof IRenderableComponent)
             RenderableComponents.add((IRenderableComponent) ComponentToAdd);
+
+        if (ComponentToAdd instanceof IInteractable)
+            InteractableComponents.add((IInteractable) ComponentToAdd);
 
         return (T) ComponentToAdd;
     }
@@ -116,6 +122,15 @@ public class Entity {
             IRenderableComponent CurrentComponent = RenderableComponents.get(i);
             if (CurrentComponent != null && CurrentComponent.CanRender()) {
                 CurrentComponent.Render(Batch);
+            }
+        }
+    }
+
+    public void Interact() {
+        for (int i = 0; i < InteractableComponents.size(); ++i) {
+            IInteractable CurrentComponent = InteractableComponents.get(i);
+            if (CurrentComponent != null && CurrentComponent.CanInteract()) {
+                CurrentComponent.Interact();
             }
         }
     }

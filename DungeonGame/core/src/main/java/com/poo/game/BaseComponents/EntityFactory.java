@@ -26,7 +26,7 @@ public class EntityFactory {
 
         PlayerObject.AddComponent(new SpriteRendererComponent("image\\player.png"));
         PlayerObject.AddComponent(new PointAndClickCharacterMover());
-        PlayerObject.AddComponent(new HealthComponent(100, 100));
+        PlayerObject.AddComponent(new HealthComponent(100, 100,true));
 
         return PlayerObject;
     }
@@ -59,6 +59,12 @@ public class EntityFactory {
         Entity MonsterObject = new Entity(MapSystem, "Monster", EntityTags);
 
         MonsterObject.AddComponent(new SpriteRendererComponent("image\\monster.png"));
+        //Health of the monster
+        MonsterObject.AddComponent(new HealthComponent(20, 20,false));
+        //Damage done by the monster
+        MonsterObject.AddComponent(new DamageComponent(5,1));
+        //Can damage the player
+        MonsterObject.AddComponent(new PlayerCollisionComponent(player));
 
         return MonsterObject;
     }

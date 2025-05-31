@@ -51,32 +51,12 @@ public class GameScreen extends BaseScreen {
 
     dungeonScene.UpdateWorld(delta);
 
+    //Handle interactions after updating the world
+    dungeonScene.HandleInteractions();
+
     ScreenUtils.clear(Color.BLACK);
     game.viewport.apply();
 
     dungeonScene.RenderWorld();
   }
-
-  /*private void input() {
-      float turbo =
-          Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)
-              || Gdx.input.isKeyPressed(Input.Keys.CONTROL_RIGHT)
-              ? game.gameOptions.getMoveTurbo()
-              : 1f;
-      float delta = Gdx.graphics.getDeltaTime();
-      float speed = 2f * delta * turbo;
-
-      if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-          mapSystem.movePlayer(MapSystem.ENMoveType.LEFT, speed);
-      }
-      if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-          mapSystem.movePlayer(MapSystem.ENMoveType.RIGHT, speed);
-      }
-      if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-          mapSystem.movePlayer(MapSystem.ENMoveType.UP, speed);
-      }
-      if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-          mapSystem.movePlayer(MapSystem.ENMoveType.DOWN, speed);
-      }
-  }*/
 }
