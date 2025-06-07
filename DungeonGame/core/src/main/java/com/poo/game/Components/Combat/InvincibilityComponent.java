@@ -1,4 +1,4 @@
-package com.poo.game.Components.Damage;
+package com.poo.game.Components.Combat;
 
 import com.poo.game.BaseComponents.AEntityComponent;
 import com.poo.game.Interfaces.IUpdatableComponent;

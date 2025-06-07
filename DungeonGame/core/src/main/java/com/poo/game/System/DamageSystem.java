@@ -1,8 +1,8 @@
 package com.poo.game.System;
 
-import com.poo.game.Components.Damage.DamageComponent;
-import com.poo.game.Components.Damage.HealthComponent;
-import com.poo.game.Components.Damage.InvincibilityComponent;
+import com.poo.game.Components.Combat.DamageComponent;
+import com.poo.game.Components.Combat.HealthComponent;
+import com.poo.game.Components.Combat.InvincibilityComponent;
 import com.poo.game.Entities.Entity;
 
 public class DamageSystem {
@@ -14,7 +14,7 @@ public class DamageSystem {
         if (damage.currentCooldown > 0)
             return;
 
-        // Check if target is player and can take damage
+        // Check if target can take damage
         if (target.GetFirstComponentOfType(InvincibilityComponent.class) != null)
             return;
 
