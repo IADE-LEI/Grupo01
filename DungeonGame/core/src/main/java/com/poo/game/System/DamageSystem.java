@@ -1,8 +1,8 @@
 package com.poo.game.System;
 
-import com.poo.game.Components.DamageComponent;
-import com.poo.game.Components.HealthComponent;
-import com.poo.game.Components.InvincibilityComponent;
+import com.poo.game.Components.Damage.DamageComponent;
+import com.poo.game.Components.Damage.HealthComponent;
+import com.poo.game.Components.Damage.InvincibilityComponent;
 import com.poo.game.Entities.Entity;
 
 public class DamageSystem {

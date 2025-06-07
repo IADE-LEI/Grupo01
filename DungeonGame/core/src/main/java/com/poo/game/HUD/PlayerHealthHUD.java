@@ -1,7 +1,7 @@
 package com.poo.game.HUD;
 
 import com.poo.game.BaseComponents.AEntityComponent;
-import com.poo.game.Components.HealthComponent;
+import com.poo.game.Components.Damage.HealthComponent;
 import com.poo.game.Interfaces.IUpdatableComponent;
 
 public class PlayerHealthHUD extends AEntityComponent implements IUpdatableComponent {

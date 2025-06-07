@@ -13,6 +13,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import com.poo.game.BaseComponents.AEntityComponent;
+import com.poo.game.Components.Camera.CameraComponent;
+import com.poo.game.Components.Render.SpriteRendererComponent;
 import com.poo.game.Interfaces.IUpdatableComponent;
 import com.poo.game.Graph.MapGraph;
 import com.poo.game.Graph.MapNode;
