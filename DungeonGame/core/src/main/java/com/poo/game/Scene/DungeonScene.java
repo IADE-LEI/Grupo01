@@ -45,7 +45,7 @@ public class DungeonScene {
         Map = generator.generate();
 
         // Debug The Grid
-        //GridLayoutSprite = (new Texture("image/GridLayout.png"));
+        GridLayoutSprite = (new Texture("image/GridLayout.png"));
 
         spriteBatch = new SpriteBatch();
 
@@ -118,12 +118,12 @@ public class DungeonScene {
             SceneEntities.get(i).Render(spriteBatch);
         }
 
-        // Debug Sprite
-        //        for (int Y = 0; Y < worldHeight; ++Y) {
-        //            for (int X = 0; X < worldWidth; ++X) {
-        //                spriteBatch.draw(GridLayoutSprite, X, Y, 1, 1);
-        //            }
-        //        }
+         //Debug Sprite
+                for (int Y = 0; Y < worldHeight; ++Y) {
+                    for (int X = 0; X < worldWidth; ++X) {
+                        spriteBatch.draw(GridLayoutSprite, X, Y, 1, 1);
+                    }
+                }
         Entity player = FindFirstEntityWithTag("Player");
         HealthRenderSystem.RenderHUD(player, spriteBatch);
         spriteBatch.end();

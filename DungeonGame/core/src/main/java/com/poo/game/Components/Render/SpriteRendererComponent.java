@@ -18,9 +18,22 @@ import com.poo.game.Interfaces.IRenderableComponent;
 
 public class SpriteRendererComponent extends AEntityComponent implements IRenderableComponent {
     public Sprite SpriteToRender;
+    private final float sizeX;
+    private final float sizeY;
 
     public SpriteRendererComponent(String SpriteToRenderPath) {
         SpriteToRender = new Sprite(new Texture(SpriteToRenderPath));
+        sizeX = 1;
+        sizeY = 1;
+        SpriteToRender.setSize(sizeX, sizeY);
+    }
+
+    public SpriteRendererComponent(String SpriteToRenderPath, float sizeX, float sizeY) {
+        SpriteToRender = new Sprite(new Texture(SpriteToRenderPath));
+        this.sizeX = sizeX;
+        this.sizeY = sizeY;
+        SpriteToRender.setSize(sizeX, sizeY);
+
     }
 
     @Override
@@ -30,7 +43,7 @@ public class SpriteRendererComponent extends AEntityComponent implements IRender
 
     @Override
     public void Render(SpriteBatch Batch) {
-        Batch.draw(SpriteToRender, SpriteToRender.getX(), SpriteToRender.getY(), 1, 1);
+        Batch.draw(SpriteToRender, SpriteToRender.getX(), SpriteToRender.getY(), sizeX, sizeY);
     }
 
     public Vector2 GetSpritePosition() {

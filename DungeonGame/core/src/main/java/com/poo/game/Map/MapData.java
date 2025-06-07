@@ -85,14 +85,4 @@ public class MapData {
     public Room GetExitRoom() {
         return exit;
     }
-
-    public boolean CanMoveTo(SpriteRendererComponent sprite, float newX, float newY) {
-        // Create temporary rectangle for proposed position
-        Rectangle tempRect = new Rectangle(newX, newY, sprite.SpriteToRender.getWidth(), sprite.SpriteToRender.getHeight());
-
-        if (MapGraph.GetNode(Math.round(newX), Math.round(newY)) != null)
-            return true;
-        Rectangle collision = new Rectangle(newX, newY, 1, 1);
-        return !tempRect.overlaps(collision);
-    }
 }

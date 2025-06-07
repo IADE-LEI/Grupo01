@@ -1,34 +1,18 @@
 package com.poo.game.Components;
 
 import com.badlogic.gdx.math.Vector2;
-import com.poo.game.BaseComponents.AEntityComponent;
 import com.poo.game.Components.Render.SpriteRendererComponent;
 import com.poo.game.Entities.Entity;
-import com.poo.game.Graph.MapNode;
 import com.poo.game.Interfaces.IUpdatableComponent;
 
-import java.util.List;
-
-public class MovingToTargetComponent extends AEntityComponent implements IUpdatableComponent {
-
-    private SpriteRendererComponent SpriteRenderer;
+public class MovingToTargetComponent extends AMovementComponent implements IUpdatableComponent {
 
     private final Entity target;
 
     float Speed = 1.0f;
 
-    private List<MapNode> CurrentPath;
-    private MapNode targetNode;
-
     public MovingToTargetComponent(Entity target) {
         this.target = target;
-    }
-
-    @Override
-    public void Start() {
-        super.Start();
-
-        SpriteRenderer = AssignedEntity.GetFirstComponentOfType(SpriteRendererComponent.class);
     }
 
 
@@ -51,12 +35,7 @@ public class MovingToTargetComponent extends AEntityComponent implements IUpdata
                 direction = new Vector2(0, Math.signum(direction.y));
             }
 
-            float newX = SpriteRenderer.SpriteToRender.getX() + direction.x;
-            float newY = SpriteRenderer.SpriteToRender.getY() + direction.y;
-
-            if (AssignedEntity.DungeonScene.Map.CanMoveTo(SpriteRenderer, newX, newY))
-                SpriteRenderer.AddPositionDelta(direction.scl(Speed * DeltaTime));
-
+            move(direction.x * DeltaTime * Speed, direction.y * DeltaTime * Speed);
         }
     }
 
@@ -64,11 +43,7 @@ public class MovingToTargetComponent extends AEntityComponent implements IUpdata
     public boolean CanUpdate() {
         return IsActive;
     }
-
-    public boolean HasPath() {
-        return CurrentPath != null;
-    }
-
+    
     public boolean CanSeeTarget(Vector2 entityPos, Vector2 targetPos) {
         int startX = Math.round(entityPos.x);
         int startY = Math.round(entityPos.y);
@@ -111,5 +86,6 @@ public class MovingToTargetComponent extends AEntityComponent implements IUpdata
         }
         return true;
     }
+
 }
 

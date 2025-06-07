@@ -29,10 +29,11 @@ public class EntityFactory {
             new ArrayList<>(Collections.singletonList(HashString.GenerateHashFromString("Player")));
         Entity PlayerObject = new Entity(MapSystem, "Player", EntityTags);
 
-        PlayerObject.AddComponent(new SpriteRendererComponent("image\\player.png"));
-        PlayerObject.AddComponent(new PointAndClickCharacterMover());
+        PlayerObject.AddComponent(new SpriteRendererComponent("image\\player.png",0.8f,0.8f));
         PlayerObject.AddComponent(new HealthComponent(100, 100,true));
 
+        //PlayerObject.AddComponent(new PointAndClickCharacterMover());
+        PlayerObject.AddComponent(new ManualMovementComponent());
         return PlayerObject;
     }
 
