@@ -43,7 +43,7 @@ public class MovingToTargetComponent extends AMovementComponent implements IUpda
     public boolean CanUpdate() {
         return IsActive;
     }
-    
+
     public boolean CanSeeTarget(Vector2 entityPos, Vector2 targetPos) {
         int startX = Math.round(entityPos.x);
         int startY = Math.round(entityPos.y);
@@ -60,7 +60,7 @@ public class MovingToTargetComponent extends AMovementComponent implements IUpda
         while (true) {
             // Check current tile
 
-            if (AssignedEntity.DungeonScene.GetMapGraph().GetNode(startX, startY) == null) {
+            if (AssignedEntity.DungeonScene.Map.getTile(startX, startY) == null) {
                 return false;
             }
 
