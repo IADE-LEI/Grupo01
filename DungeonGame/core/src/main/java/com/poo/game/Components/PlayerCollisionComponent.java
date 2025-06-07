@@ -7,7 +7,7 @@ import com.poo.game.System.DamageSystem;
 
 public class PlayerCollisionComponent extends AEntityComponent implements IInteractable {
 
-    private Entity player;
+    private final Entity player;
 
     public PlayerCollisionComponent(Entity player) {
         this.player = player;
