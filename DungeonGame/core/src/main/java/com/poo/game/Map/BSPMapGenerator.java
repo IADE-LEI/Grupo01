@@ -82,10 +82,7 @@ public class BSPMapGenerator {
         for (int x = room.getX(); x < room.getX() + room.getWidth(); ++x) {
             for (int y = room.getY(); y < room.getY() + room.getHeight(); ++y) {
                 mapData.setTile(x, y, SpriteFactory.CreateSpriteObject(Color.GRAY));
-                MapNode NewMapNode = new MapNode();
-                NewMapNode.CellX = x;
-                NewMapNode.CellY = y;
-
+                MapNode NewMapNode = new MapNode(x,y,room);
                 MapNodeGrid[x][y] = NewMapNode;
             }
         }

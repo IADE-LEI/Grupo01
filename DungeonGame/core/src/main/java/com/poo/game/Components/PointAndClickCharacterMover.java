@@ -68,7 +68,7 @@ public class PointAndClickCharacterMover extends AEntityComponent implements IUp
             while (CurrentPath.size() != 0 && CurrentPath.get(0) == null)
                 CurrentPath.remove(CurrentPath.size() - 1);
 
-            Vector2 NodeLocation = new Vector2(CurrentPath.get(0).CellX, CurrentPath.get(0).CellY);
+            Vector2 NodeLocation = CurrentPath.get(0).GetPosition();
             Vector2 SpriteLocation = SpriteRenderer.GetSpritePosition();
 
             if (Vector2.dst(SpriteLocation.x, SpriteLocation.y, NodeLocation.x, NodeLocation.y) < 0.1f) {
@@ -79,7 +79,7 @@ public class PointAndClickCharacterMover extends AEntityComponent implements IUp
                     return;
                 }
 
-                NodeLocation = new Vector2(CurrentPath.get(0).CellX, CurrentPath.get(0).CellY);
+                NodeLocation = CurrentPath.get(0).GetPosition();
             }
 
             MovementDirection = NodeLocation.sub(SpriteLocation).nor();
@@ -98,13 +98,13 @@ public class PointAndClickCharacterMover extends AEntityComponent implements IUp
             (
                 MapGraph.GetNode
                     (
-                        // Round To Avoid Weird Floating Point Erros
+                        // Round To Avoid Weird Floating Point Errors
                         (int) Math.round(SpriteRenderer.GetSpritePosition().x),
                         (int) Math.round(SpriteRenderer.GetSpritePosition().y)
                     ),
                 MapGraph.GetNode
                     (
-                        // Round To Avoid Weird Floating Point Erros
+                        // Round To Avoid Weird Floating Point Errors
                         (int) MouseAtWorldPoint.x,
                         (int) MouseAtWorldPoint.y
                     )
@@ -117,7 +117,7 @@ public class PointAndClickCharacterMover extends AEntityComponent implements IUp
             return;
 
         for (int i = 0; i < CurrentPath.size(); i++) {
-            System.out.println(CurrentPath.get(i).CellX + " " + CurrentPath.get(i).CellY);
+            System.out.println(CurrentPath.get(i).GetCellX() + " " + CurrentPath.get(i).GetCellY());
         }
 
         System.out.println("");

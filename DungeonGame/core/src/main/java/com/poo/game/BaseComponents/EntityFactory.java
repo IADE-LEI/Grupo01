@@ -71,6 +71,8 @@ public class EntityFactory {
         //Can damage the player
         MonsterObject.AddComponent(new PlayerCollisionComponent(player));
 
+        MonsterObject.AddComponent(new MovingToTargetComponent(player));
+
         return MonsterObject;
     }
 

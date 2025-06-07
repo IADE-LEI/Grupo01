@@ -9,6 +9,8 @@
  */
 package com.poo.game.Graph;
 
+import com.poo.game.Map.Room;
+
 import java.util.*;
 
 import static com.badlogic.gdx.math.MathUtils.random;
@@ -17,10 +19,11 @@ public class MapGraph {
 
     // All the map nodes
     ArrayList<MapNode> Nodes = new ArrayList<>();
+    ArrayList<MapNode> NodesWithRoom = new ArrayList<>();
 
     public MapNode GetNode(int CellX, int CellY) {
         for (int i = 0; i < Nodes.size(); ++i) {
-            if (Nodes.get(i).CellX == CellX && Nodes.get(i).CellY == CellY) {
+            if (Nodes.get(i).GetCellX() == CellX && Nodes.get(i).GetCellY() == CellY) {
                 return Nodes.get(i);
             }
         }
@@ -39,12 +42,14 @@ public class MapGraph {
 
     public void AddNode(MapNode node) {
         Nodes.add(node);
+        if(node.GetRoom() != null)
+            NodesWithRoom.add(node);
     }
 
     public List<MapNode> SearchForPath(MapNode StartNode, MapNode EndNode) {
         if (StartNode == null || EndNode == null) return null;
 
-        if (StartNode.CellX == EndNode.CellX && StartNode.CellY == EndNode.CellY) return null;
+        if (StartNode.GetCellX() == EndNode.GetCellX() && StartNode.GetCellY() == EndNode.GetCellY()) return null;
 
         return FindAStarPath(StartNode, EndNode);
     }
@@ -59,7 +64,7 @@ public class MapGraph {
      * @return Estimated distance
      */
     private static int heuristic(MapNode from, MapNode to) {
-        return Math.abs(from.CellX - to.CellX) + Math.abs(from.CellY - to.CellY);
+        return Math.abs(from.GetCellX() - to.GetCellX()) + Math.abs(from.GetCellY() - to.GetCellY());
     }
 
     /**
@@ -125,9 +130,9 @@ public class MapGraph {
         return Collections.emptyList();
     }
 
-    public MapNode GetRandomNode() {
-        int randomIndex = random.nextInt(Nodes.size());
-        return Nodes.get(randomIndex);
+    public MapNode GetRandomNodeInRoom() {
+        int randomIndex = random.nextInt(NodesWithRoom.size());
+        return NodesWithRoom.get(randomIndex);
     }
     private static List<MapNode> ReconstructPathAStar(
         Map<MapNode, MapNode> cameFrom, MapNode current) {
@@ -141,4 +146,5 @@ public class MapGraph {
 
         return path;
     }
+
 }

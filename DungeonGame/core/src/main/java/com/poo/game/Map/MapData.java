@@ -12,8 +12,10 @@ package com.poo.game.Map;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.poo.game.BaseComponents.SpriteFactory;
+import com.poo.game.Components.Render.SpriteRendererComponent;
 import com.poo.game.Graph.MapGraph;
 
 /**
@@ -82,5 +84,18 @@ public class MapData {
 
     public Room GetExitRoom() {
         return exit;
+    }
+
+    public boolean CanMoveTo(SpriteRendererComponent sprite, float newX, float newY) {
+        // Create temporary rectangle for proposed position
+        Rectangle tempRect = new Rectangle(newX, newY, sprite.SpriteToRender.getWidth(), sprite.SpriteToRender.getHeight());
+
+        if(MapGraph.GetNode((int) newX,(int) newY) != null)
+            return true;
+        Rectangle collision = new Rectangle(newX, newY, 1, 1);
+        if (tempRect.overlaps(collision)) {
+            return false;
+        }
+        return true;
     }
 }

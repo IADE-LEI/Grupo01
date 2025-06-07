@@ -51,17 +51,22 @@ public class DungeonScene {
 
         Entity camera = EntityFactory.CreateCameraObject(this);
         Entity player = EntityFactory.CreatePlayerObject(this);
-        Entity exitDoor = EntityFactory.CreateExitDoorObject(this,player);
+        Entity exitDoor = EntityFactory.CreateExitDoorObject(this, player);
 
         SceneEntities.add(camera);
         SceneEntities.add(player);
         SceneEntities.add(exitDoor);
+        ArrayList<Room> usedRooms = new ArrayList<>();
 
         for (int i = 0; i < MaxNrMonsters; ++i) {
-            Entity Monster = EntityFactory.CreateMonsterObject(this,player);
+            Entity Monster = EntityFactory.CreateMonsterObject(this, player);
             SpriteRendererComponent monsterSprite = Monster.GetFirstComponentOfType(SpriteRendererComponent.class);
-            MapNode node = Map.MapGraph.GetRandomNode();
-            monsterSprite.SpriteToRender.setPosition(node.CellX, node.CellY);
+            MapNode node = Map.MapGraph.GetRandomNodeInRoom();
+            while (usedRooms.contains(node.GetRoom()))
+                node = Map.MapGraph.GetRandomNodeInRoom();
+
+            usedRooms.add(node.GetRoom());
+            monsterSprite.SpriteToRender.setPosition(node.GetCellX(), node.GetCellY());
             SceneEntities.add(Monster);
         }
 
@@ -86,10 +91,8 @@ public class DungeonScene {
 
 
         //Add path so player can go into the door
-        MapNode node = new MapNode();
-        node.CellX = exitRoom.getCenterX();
-        node.CellY = exitRoom.getTopY();
-        MapNode previousNode = Map.MapGraph.GetNode(exitRoom.getCenterX(),exitRoom.getTopY()-1);
+        MapNode node = new MapNode(exitRoom.getCenterX(), exitRoom.getTopY(), exitRoom);
+        MapNode previousNode = Map.MapGraph.GetNode(exitRoom.getCenterX(), exitRoom.getTopY() - 1);
         node.AddTwoWayConnectionTo(previousNode);
         Map.MapGraph.AddNode(node);
 
