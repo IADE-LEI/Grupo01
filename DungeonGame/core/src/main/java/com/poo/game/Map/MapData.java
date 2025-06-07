@@ -90,12 +90,9 @@ public class MapData {
         // Create temporary rectangle for proposed position
         Rectangle tempRect = new Rectangle(newX, newY, sprite.SpriteToRender.getWidth(), sprite.SpriteToRender.getHeight());
 
-        if(MapGraph.GetNode((int) newX,(int) newY) != null)
+        if (MapGraph.GetNode(Math.round(newX), Math.round(newY)) != null)
             return true;
         Rectangle collision = new Rectangle(newX, newY, 1, 1);
-        if (tempRect.overlaps(collision)) {
-            return false;
-        }
-        return true;
+        return !tempRect.overlaps(collision);
     }
 }

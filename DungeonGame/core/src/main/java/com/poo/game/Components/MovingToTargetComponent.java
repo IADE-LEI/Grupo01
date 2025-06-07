@@ -89,15 +89,21 @@ public class MovingToTargetComponent extends AEntityComponent implements IUpdata
                 return false;
             }
 
+            // If we've reached the end point
             if (startX == endX && startY == endY) {
                 break;
             }
 
+            // Calculate doubled error term
             int e2 = 2 * err;
+
+            // If error is greater than negative dy, move in x direction
             if (e2 > -dy) {
                 err -= dy;
                 startX += sx;
             }
+
+            // If error is less than dx, move in y direction
             if (e2 < dx) {
                 err += dx;
                 startY += sy;
