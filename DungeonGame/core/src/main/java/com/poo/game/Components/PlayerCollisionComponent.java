@@ -13,7 +13,6 @@ public class PlayerCollisionComponent extends AEntityComponent implements IInter
         this.player = player;
     }
 
-
     @Override
     public boolean CanInteract() {
         return IsActive;

@@ -58,6 +58,20 @@ public class DungeonScene {
         SceneEntities.add(exitDoor);
         ArrayList<Room> usedRooms = new ArrayList<>();
 
+        for (int i = 0; i < MaxNrPotions; ++i) {
+            Entity Potion = EntityFactory.CreatePotionObject(this, player);
+            SpriteRendererComponent potionSprite = Potion.GetFirstComponentOfType(SpriteRendererComponent.class);
+            MapNode node = Map.MapGraph.GetRandomNodeInRoom();
+            while (usedRooms.contains(node.GetRoom()))
+                node = Map.MapGraph.GetRandomNodeInRoom();
+
+            usedRooms.add(node.GetRoom());
+            potionSprite.SpriteToRender.setPosition(node.GetCellX(), node.GetCellY());
+            SceneEntities.add(Potion);
+        }
+
+        usedRooms = new ArrayList<>();
+
         for (int i = 0; i < MaxNrMonsters; ++i) {
             Entity Monster = EntityFactory.CreateMonsterObject(this, player);
             SpriteRendererComponent monsterSprite = Monster.GetFirstComponentOfType(SpriteRendererComponent.class);
@@ -191,4 +205,9 @@ public class DungeonScene {
 
         return exitDoorPosition;
     }
+    
+    public void RemoveEntity(Entity entity){
+        SceneEntities.remove(entity);
+    }
+
 }

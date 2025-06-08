@@ -34,7 +34,7 @@ public class EntityFactory {
         PlayerObject.AddComponent(new SpriteRendererComponent("image\\player.png", 0.8f, 0.8f));
         PlayerObject.AddComponent(new HealthComponent(100, 100, true));
 
-        //PlayerObject.AddComponent(new PointAndClickCharacterMover());
+        PlayerObject.AddComponent(new PointAndClickCharacterMover());
         PlayerObject.AddComponent(new ManualMovementComponent());
         return PlayerObject;
     }
@@ -78,6 +78,16 @@ public class EntityFactory {
 
         return MonsterObject;
     }
+    public static Entity CreatePotionObject(DungeonScene MapSystem, Entity player) {
+        List<Integer> EntityTags =
+            new ArrayList<>(Collections.singletonList(HashString.GenerateHashFromString("Potion")));
+        Entity PotionObject = new Entity(MapSystem, "Potion", EntityTags);
 
+        PotionObject.AddComponent(new SpriteRendererComponent("image\\potion.png"));
+        PotionObject.AddComponent(new PotionComponent(player));
+        PotionObject.AddComponent(new PlayerCollisionComponent(player));
+        
+        return PotionObject;
+    }
 
 }

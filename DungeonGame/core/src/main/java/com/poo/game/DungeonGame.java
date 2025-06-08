@@ -28,6 +28,7 @@ public class DungeonGame extends Game {
   public static int WindowSizeX = 980;
   public static int WindowSizeY = 960;
   public static int MaxNrMonsters = 5;
+  public static int MaxNrPotions = 10;
 
   public SpriteBatch batch;
   public BitmapFont font;
