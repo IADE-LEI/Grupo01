@@ -7,21 +7,38 @@
  * Autores : Affonso Neto | António Neto | Paulo Jadaugy | Tiago Araújo | Tomás Pereira
  * ------------------------------------------------------------------------------------------------
  */
-package com.poo.game;
+package com.poo.game.Screens;
 
-public class Constants {
-  /** Path of file for Buttons skin configuration */
-  public static final String BUTTON_SKIN = "skin/button.atlas";
+import com.badlogic.gdx.Screen;
+import com.poo.game.DungeonGame;
 
-  /** Path of file for UI skin configuration */
-  public static final String UI_SKIN = "skin/uiskin.json";
+public class BaseScreen implements Screen {
+  protected final DungeonGame game;
 
-  /** Preference property name for music */
-  public static final String PREF_MUSIC = "PlayMusic";
+  BaseScreen(DungeonGame game) {
+    this.game = game;
+  }
 
-  /** Preference property name for sound volume */
-  public static final String PREF_SOUND = "SoundVolume";
+  @Override
+  public void show() {}
 
-  /** Preference property name for player turno move */
-  public static final String PREF_TURBO = "MoveTurbo";
+  @Override
+  public void render(float delta) {}
+
+  @Override
+  public void resize(int width, int height) {
+    game.viewport.update(width, height, true);
+  }
+
+  @Override
+  public void pause() {}
+
+  @Override
+  public void resume() {}
+
+  @Override
+  public void hide() {}
+
+  @Override
+  public void dispose() {}
 }

@@ -7,21 +7,31 @@
  * Autores : Affonso Neto | António Neto | Paulo Jadaugy | Tiago Araújo | Tomás Pereira
  * ------------------------------------------------------------------------------------------------
  */
-package com.poo.game;
+package com.poo.game.BaseComponents;
 
-public class Constants {
-  /** Path of file for Buttons skin configuration */
-  public static final String BUTTON_SKIN = "skin/button.atlas";
+import com.poo.game.Entities.Entity;
 
-  /** Path of file for UI skin configuration */
-  public static final String UI_SKIN = "skin/uiskin.json";
+public class AEntityComponent {
+    protected Entity AssignedEntity = null;
+    protected boolean IsActive = true;
 
-  /** Preference property name for music */
-  public static final String PREF_MUSIC = "PlayMusic";
+    public void Start() {
+    }
 
-  /** Preference property name for sound volume */
-  public static final String PREF_SOUND = "SoundVolume";
+    public Entity AssignedEntity() {
+        return AssignedEntity;
+    }
 
-  /** Preference property name for player turno move */
-  public static final String PREF_TURBO = "MoveTurbo";
+    public void AssignedEntity(Entity Entity) {
+        AssignedEntity = Entity;
+    }
+
+    public boolean IsActive() {
+        return IsActive;
+    }
+
+    public void SetIsActive(boolean active) {
+        IsActive = active;
+    }
+
 }
