@@ -1,4 +1,4 @@
-package com.poo.game.Components;
+package com.poo.game.Components.Movement;
 
 import com.badlogic.gdx.math.Vector2;
 import com.poo.game.Components.Render.SpriteRendererComponent;

@@ -1,14 +1,9 @@
-package com.poo.game.Components;
+package com.poo.game.Components.Movement;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.poo.game.Components.Camera.CameraComponent;
-import com.poo.game.Components.Render.SpriteRendererComponent;
-import com.poo.game.DungeonGame;
 import com.poo.game.Interfaces.IUpdatableComponent;
 
 public class ManualMovementComponent extends AMovementComponent implements IUpdatableComponent {

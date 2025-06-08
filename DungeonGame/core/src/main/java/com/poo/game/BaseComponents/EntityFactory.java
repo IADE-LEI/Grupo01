@@ -14,6 +14,8 @@ import com.poo.game.Components.Camera.CameraComponent;
 import com.poo.game.Components.Camera.CameraManualMoverComponent;
 import com.poo.game.Components.Combat.DamageComponent;
 import com.poo.game.Components.Combat.HealthComponent;
+import com.poo.game.Components.Movement.ManualMovementComponent;
+import com.poo.game.Components.Movement.MovingToTargetComponent;
 import com.poo.game.Components.Render.SpriteRendererComponent;
 import com.poo.game.Entities.Entity;
 import com.poo.game.Utils.HashString;
