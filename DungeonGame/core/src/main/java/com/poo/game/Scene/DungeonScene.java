@@ -87,8 +87,9 @@ public class DungeonScene {
 
         SpriteRendererComponent doorSprite = exitDoor.GetFirstComponentOfType(SpriteRendererComponent.class);
         Room exitRoom = Map.GetExitRoom();
-        doorSprite.SetPosition(new Vector2(exitRoom.getCenterX(), exitRoom.getTopY()));
 
+        //Adds exit door position on that room
+        doorSprite.SetPosition(GetExitDoorPosition(exitRoom));
 
         //Add path so player can go into the door
         MapNode node = new MapNode(exitRoom.getCenterX(), exitRoom.getTopY(), exitRoom);
@@ -167,5 +168,27 @@ public class DungeonScene {
         if (!Cameras.isEmpty())
             return Cameras.get(0);
         return null;
+    }
+
+    private Vector2 GetExitDoorPosition(Room room) {
+        Vector2 exitDoorPosition = new Vector2();
+        if(Map.getTile(room.getCenterX(), room.getTopY()) == null){
+            exitDoorPosition.x = room.getCenterX();
+            exitDoorPosition.y = room.getTopY();
+        }
+        else
+            if(Map.getTile(room.getEndX(), room.getCenterY()) == null){
+            exitDoorPosition.x = room.getEndX();
+            exitDoorPosition.y = room.getCenterY();
+        }else
+            if(Map.getTile(room.getCenterX(), room.getY()) == null){
+            exitDoorPosition.x = room.getCenterX();
+            exitDoorPosition.y = room.getY();
+        }else if(Map.getTile(room.getX(), room.getCenterY()) == null){
+            exitDoorPosition.x = room.getX();
+            exitDoorPosition.y = room.getCenterY();
+        }
+
+        return exitDoorPosition;
     }
 }

@@ -37,6 +37,10 @@ public class Room {
         return y + height;
     }
 
+    public int getEndX() {
+        return x + width;
+    }
+
     // Getters
     public int getX() {
         return x;
