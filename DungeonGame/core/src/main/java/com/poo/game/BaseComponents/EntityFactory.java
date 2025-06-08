@@ -31,8 +31,8 @@ public class EntityFactory {
             new ArrayList<>(Collections.singletonList(HashString.GenerateHashFromString("Player")));
         Entity PlayerObject = new Entity(MapSystem, "Player", EntityTags);
 
-        PlayerObject.AddComponent(new SpriteRendererComponent("image\\player.png",0.8f,0.8f));
-        PlayerObject.AddComponent(new HealthComponent(100, 100,true));
+        PlayerObject.AddComponent(new SpriteRendererComponent("image\\player.png", 0.8f, 0.8f));
+        PlayerObject.AddComponent(new HealthComponent(100, 100, true));
 
         //PlayerObject.AddComponent(new PointAndClickCharacterMover());
         PlayerObject.AddComponent(new ManualMovementComponent());
@@ -68,9 +68,9 @@ public class EntityFactory {
 
         MonsterObject.AddComponent(new SpriteRendererComponent("image\\monster.png"));
         //Health of the monster
-        MonsterObject.AddComponent(new HealthComponent(20, 20,false));
+        MonsterObject.AddComponent(new HealthComponent(20, 20, false));
         //Damage done by the monster
-        MonsterObject.AddComponent(new DamageComponent(5,1));
+        MonsterObject.AddComponent(new DamageComponent(5, 1));
         //Can damage the player
         MonsterObject.AddComponent(new PlayerCollisionComponent(player));
 
