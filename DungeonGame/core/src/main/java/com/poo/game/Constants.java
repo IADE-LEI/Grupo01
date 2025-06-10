@@ -9,6 +9,9 @@
  */
 package com.poo.game;
 
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.poo.game.Utils.FontHelper;
+
 public class Constants {
   /** Path of file for Buttons skin configuration */
   public static final String BUTTON_SKIN = "skin/button.atlas";
@@ -24,4 +27,6 @@ public class Constants {
 
   /** Preference property name for player turno move */
   public static final String PREF_TURBO = "MoveTurbo";
+
+  public static final BitmapFont DEFAULT_FONT = FontHelper.FontFromFile("Montserrat-Regular.ttf", 32);
 }
