@@ -11,7 +11,6 @@ package com.poo.game.Map;
 
 import com.badlogic.gdx.graphics.Color;
 import com.poo.game.BaseComponents.SpriteFactory;
-import com.poo.game.Graph.MapNode;
 
 public class Corridor {
     private final MapData mapData;

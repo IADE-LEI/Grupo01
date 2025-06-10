@@ -5,7 +5,7 @@ import com.poo.game.Components.Render.SpriteRendererComponent;
 import com.poo.game.Entities.Entity;
 import com.poo.game.Interfaces.IUpdatableComponent;
 
-public class MovingToTargetComponent extends AMovementComponent implements IUpdatableComponent {
+public class MovingToTargetComponent extends MovementComponent implements IUpdatableComponent {
 
     private final Entity target;
 

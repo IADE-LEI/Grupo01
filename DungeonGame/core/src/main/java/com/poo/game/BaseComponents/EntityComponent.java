@@ -11,7 +11,7 @@ package com.poo.game.BaseComponents;
 
 import com.poo.game.Entities.Entity;
 
-public class AEntityComponent {
+public class EntityComponent {
     protected Entity AssignedEntity = null;
     protected boolean IsActive = true;
 

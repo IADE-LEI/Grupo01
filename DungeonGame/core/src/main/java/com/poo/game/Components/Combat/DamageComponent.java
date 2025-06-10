@@ -1,9 +1,9 @@
 package com.poo.game.Components.Combat;
 
-import com.poo.game.BaseComponents.AEntityComponent;
+import com.poo.game.BaseComponents.EntityComponent;
 import com.poo.game.Interfaces.IUpdatableComponent;
 
-public class DamageComponent extends AEntityComponent implements IUpdatableComponent {
+public class DamageComponent extends EntityComponent implements IUpdatableComponent {
 
     public int damageAmount;
 

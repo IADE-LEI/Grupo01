@@ -12,9 +12,9 @@ package com.poo.game.Components.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.poo.game.BaseComponents.AEntityComponent;
+import com.poo.game.BaseComponents.EntityComponent;
 
-public class CameraComponent extends AEntityComponent
+public class CameraComponent extends EntityComponent
 {
     OrthographicCamera RenderCamera;
 

@@ -13,10 +13,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.poo.game.BaseComponents.AEntityComponent;
+import com.poo.game.BaseComponents.EntityComponent;
 import com.poo.game.Interfaces.IRenderableComponent;
 
-public class SpriteRendererComponent extends AEntityComponent implements IRenderableComponent {
+public class SpriteRendererComponent extends EntityComponent implements IRenderableComponent {
     public Sprite SpriteToRender;
     private final float sizeX;
     private final float sizeY;

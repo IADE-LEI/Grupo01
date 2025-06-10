@@ -1,9 +1,9 @@
 package com.poo.game.Components.Combat;
 
-import com.poo.game.BaseComponents.AEntityComponent;
+import com.poo.game.BaseComponents.EntityComponent;
 import com.poo.game.Interfaces.IUpdatableComponent;
 
-public class InvincibilityComponent extends AEntityComponent implements IUpdatableComponent {
+public class InvincibilityComponent extends EntityComponent implements IUpdatableComponent {
     //Temporary invincibility after being hit
     public float duration;
     public float timeLeft;

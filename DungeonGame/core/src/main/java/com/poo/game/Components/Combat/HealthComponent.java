@@ -1,9 +1,9 @@
 package com.poo.game.Components.Combat;
 
-import com.poo.game.BaseComponents.AEntityComponent;
+import com.poo.game.BaseComponents.EntityComponent;
 
 
-public class HealthComponent extends AEntityComponent  {
+public class HealthComponent extends EntityComponent {
 
     private int currentHealth;
     private final int maxHealth;

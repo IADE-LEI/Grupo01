@@ -16,8 +16,8 @@ import com.poo.game.BaseComponents.EntityFactory;
 import com.poo.game.Components.Camera.CameraComponent;
 import com.poo.game.Components.Render.SpriteRendererComponent;
 import com.poo.game.Entities.Entity;
-import com.poo.game.Graph.MapGraph;
-import com.poo.game.Graph.MapNode;
+import com.poo.game.Map.MapGraph;
+import com.poo.game.Map.MapNode;
 import com.poo.game.Map.BSPMapGenerator;
 import com.poo.game.Map.MapData;
 import com.poo.game.Map.Room;
@@ -205,7 +205,7 @@ public class DungeonScene {
 
         return exitDoorPosition;
     }
-    
+
     public void RemoveEntity(Entity entity){
         SceneEntities.remove(entity);
     }

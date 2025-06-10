@@ -13,16 +13,16 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.poo.game.BaseComponents.AEntityComponent;
+import com.poo.game.BaseComponents.EntityComponent;
 import com.poo.game.Interfaces.IUpdatableComponent;
 import com.poo.game.DungeonGame;
 
-public class CameraManualMoverComponent extends AEntityComponent implements IUpdatableComponent
+public class CameraManualMoverComponent extends EntityComponent implements IUpdatableComponent
 {
     CameraComponent CameraToMove;
 
-    private float MovementSpeed = 50.0f;
-    private float ZoomSpeed = 0.02f;
+    private final float MovementSpeed = 50.0f;
+    private final float ZoomSpeed = 0.02f;
 
     @Override // Gotta tell java to override :p
     public void Start()

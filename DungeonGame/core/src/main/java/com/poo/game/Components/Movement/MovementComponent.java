@@ -3,11 +3,11 @@ package com.poo.game.Components.Movement;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
-import com.poo.game.BaseComponents.AEntityComponent;
+import com.poo.game.BaseComponents.EntityComponent;
 import com.poo.game.Components.Render.SpriteRendererComponent;
 import com.poo.game.DungeonGame;
 
-public class AMovementComponent extends AEntityComponent {
+public class MovementComponent extends EntityComponent {
 
     protected SpriteRendererComponent SpriteRenderer;
 

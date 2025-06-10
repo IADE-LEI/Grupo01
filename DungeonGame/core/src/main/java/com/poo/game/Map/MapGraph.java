@@ -7,12 +7,9 @@
  * Autores : Affonso Neto | António Neto | Paulo Jadaugy | Tiago Araújo | Tomás Pereira
  * ------------------------------------------------------------------------------------------------
  */
-package com.poo.game.Graph;
-
-import com.poo.game.Map.Room;
+package com.poo.game.Map;
 
 import java.util.*;
-
 import static com.badlogic.gdx.math.MathUtils.random;
 
 public class MapGraph {

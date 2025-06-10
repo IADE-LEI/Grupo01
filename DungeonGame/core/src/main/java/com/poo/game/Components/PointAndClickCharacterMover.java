@@ -12,16 +12,16 @@ package com.poo.game.Components;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
-import com.poo.game.BaseComponents.AEntityComponent;
+import com.poo.game.BaseComponents.EntityComponent;
 import com.poo.game.Components.Camera.CameraComponent;
 import com.poo.game.Components.Render.SpriteRendererComponent;
 import com.poo.game.Interfaces.IUpdatableComponent;
-import com.poo.game.Graph.MapGraph;
-import com.poo.game.Graph.MapNode;
+import com.poo.game.Map.MapGraph;
+import com.poo.game.Map.MapNode;
 
 import java.util.List;
 
-public class PointAndClickCharacterMover extends AEntityComponent implements IUpdatableComponent {
+public class PointAndClickCharacterMover extends EntityComponent implements IUpdatableComponent {
     private SpriteRendererComponent SpriteRenderer;
 
     private CameraComponent Camera;
@@ -57,7 +57,7 @@ public class PointAndClickCharacterMover extends AEntityComponent implements IUp
             if (CurrentPath == null)
                 return;
 
-            if (CurrentPath.size() == 0)
+            if (CurrentPath.isEmpty())
                 CurrentPath = null;
 
             if (CurrentPath != null)
@@ -65,7 +65,7 @@ public class PointAndClickCharacterMover extends AEntityComponent implements IUp
         }
 
         if (HasPath()) {
-            while (CurrentPath.size() != 0 && CurrentPath.get(0) == null)
+            while (!CurrentPath.isEmpty() && CurrentPath.get(0) == null)
                 CurrentPath.remove(CurrentPath.size() - 1);
 
             Vector2 NodeLocation = CurrentPath.get(0).GetPosition();
@@ -74,7 +74,7 @@ public class PointAndClickCharacterMover extends AEntityComponent implements IUp
             if (Vector2.dst(SpriteLocation.x, SpriteLocation.y, NodeLocation.x, NodeLocation.y) < 0.1f) {
                 CurrentPath.remove(0);
 
-                if (CurrentPath.size() == 0) {
+                if (CurrentPath.isEmpty()) {
                     CurrentPath = null;
                     return;
                 }
@@ -99,8 +99,8 @@ public class PointAndClickCharacterMover extends AEntityComponent implements IUp
                 MapGraph.GetNode
                     (
                         // Round To Avoid Weird Floating Point Errors
-                        (int) Math.round(SpriteRenderer.GetSpritePosition().x),
-                        (int) Math.round(SpriteRenderer.GetSpritePosition().y)
+                        Math.round(SpriteRenderer.GetSpritePosition().x),
+                        Math.round(SpriteRenderer.GetSpritePosition().y)
                     ),
                 MapGraph.GetNode
                     (

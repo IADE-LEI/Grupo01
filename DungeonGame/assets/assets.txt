@@ -6,9 +6,10 @@ image/entry-background.jpg
 image/libgdx.png
 image/monster.png
 image/player.png
-skin/Button.atlas
-skin/Button.png
-skin/UiSkin.json
-skin/UiSkin.png
+image/potion.png
+skin/button.atlas
+skin/button.png
 skin/default.fnt
 skin/uiskin.atlas
+skin/uiskin.json
+skin/uiskin.png

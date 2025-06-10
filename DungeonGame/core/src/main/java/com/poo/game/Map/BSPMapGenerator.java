@@ -11,7 +11,6 @@ package com.poo.game.Map;
 
 import com.badlogic.gdx.graphics.Color;
 import com.poo.game.BaseComponents.SpriteFactory;
-import com.poo.game.Graph.MapNode;
 import com.poo.game.Utils.Boundaries;
 
 import java.util.ArrayList;

@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.poo.game.Components.Camera.CameraComponent;
 import com.poo.game.Interfaces.IUpdatableComponent;
 
-public class ManualMovementComponent extends AMovementComponent implements IUpdatableComponent {
+public class ManualMovementComponent extends MovementComponent implements IUpdatableComponent {
 
     private CameraComponent Camera;
 

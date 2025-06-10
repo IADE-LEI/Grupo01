@@ -2,12 +2,11 @@ package com.poo.game.Components;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.poo.game.Interfaces.IUpdatableComponent;
-import com.poo.game.BaseComponents.AEntityComponent;
+import com.poo.game.BaseComponents.EntityComponent;
 import com.poo.game.Entities.Entity;
-import com.poo.game.Components.Combat.HealthComponent;
 import com.poo.game.System.PotionSystem;
 
-public class PotionComponent extends AEntityComponent implements IUpdatableComponent {
+public class PotionComponent extends EntityComponent implements IUpdatableComponent {
 
     private final Entity Player;
     private static final int amountOfHealth = 10;

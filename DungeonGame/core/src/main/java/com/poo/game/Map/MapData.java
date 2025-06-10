@@ -9,14 +9,9 @@
  */
 package com.poo.game.Map;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.poo.game.BaseComponents.SpriteFactory;
-import com.poo.game.Components.Render.SpriteRendererComponent;
-import com.poo.game.Graph.MapGraph;
 
 /**
  * Class for map information Tiles (Floor & Wall) & Player
