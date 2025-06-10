@@ -82,7 +82,7 @@ public class SettingsScreen extends BaseScreen implements Screen {
     buttonStyle.up = buttonSkin.getDrawable("button");
     buttonStyle.over = buttonSkin.getDrawable("button-over");
     buttonStyle.down = buttonSkin.getDrawable("button-down");
-    buttonStyle.font = FontHelper.FontFromTtf("Dungeon.ttf", 32);
+    buttonStyle.font = FontHelper.FontFromFile("Dungeon.ttf", 32);
 
     // Buttons
     saveButton = new TextButton("Save (F10)", buttonStyle);
@@ -123,9 +123,9 @@ public class SettingsScreen extends BaseScreen implements Screen {
 
     // styles for labels (title & options)
     Label.LabelStyle titleStyle = new Label.LabelStyle();
-    titleStyle.font = FontHelper.FontFromTtf("Dungeon.ttf", 54);
+    titleStyle.font = FontHelper.FontFromFile("Dungeon.ttf", 54);
     Label.LabelStyle labelStyle = new Label.LabelStyle();
-    labelStyle.font = FontHelper.FontFromTtf("Dungeon.ttf", 45);
+    labelStyle.font = FontHelper.FontFromFile("Dungeon.ttf", 45);
 
     // title
     HorizontalGroup titleGroup = new HorizontalGroup();

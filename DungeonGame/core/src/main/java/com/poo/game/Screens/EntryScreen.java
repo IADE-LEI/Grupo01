@@ -74,7 +74,7 @@ public class EntryScreen extends BaseScreen {
     buttonStyle.up = buttonSkin.getDrawable("button");
     buttonStyle.over = buttonSkin.getDrawable("button-over");
     buttonStyle.down = buttonSkin.getDrawable("button-down");
-    buttonStyle.font = FontHelper.FontFromTtf("Dungeon.ttf", 32);
+    buttonStyle.font = FontHelper.FontFromFile("Dungeon.ttf", 32);
 
     playButton = new TextButton("Play", buttonStyle);
     playButton.setSize(192, 48);
@@ -147,7 +147,7 @@ public class EntryScreen extends BaseScreen {
     backgroundImage.setLayoutEnabled(true);
     backgroundImage.setFillParent(true);
 
-    titleFont = FontHelper.FontFromTtf("Dungeon.ttf", 60);
+    titleFont = FontHelper.FontFromFile("Dungeon.ttf", 60);
   }
 
   @Override

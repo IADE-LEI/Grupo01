@@ -7,22 +7,15 @@
  * Autores : Affonso Neto | António Neto | Paulo Jadaugy | Tiago Araújo | Tomás Pereira
  * ------------------------------------------------------------------------------------------------
  */
-package com.poo.game.System;
+package com.poo.game.Interfaces;
 
-import com.poo.game.Components.PotionComponent;
 import com.poo.game.Entities.Entity;
-import com.poo.game.Components.Combat.HealthComponent;
-import com.poo.game.Entities.Potion;
 
-public class PotionSystem {
-
-  public static void handleCollision(Entity potion, Entity player) {
-    PotionComponent potionComponent = potion.GetFirstComponentOfType(PotionComponent.class);
-
-    // Apply health
-    HealthComponent health = player.GetFirstComponentOfType(HealthComponent.class);
-    health.increaseHealth(potionComponent.getAmountOfHealth());
-
-    ((Potion) potion).consumed();
-  }
+/** Interface for potion consumed event driven dispatcher */
+public interface IPotionConsumedEvent {
+    /**
+     * Raise information that an potion entity is consumed
+     * @param e Then potion entity that consumed
+     */
+    void potionConsumed(Entity e);
 }

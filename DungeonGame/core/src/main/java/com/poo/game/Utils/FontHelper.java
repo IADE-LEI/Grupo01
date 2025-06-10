@@ -14,9 +14,9 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 public class FontHelper {
-  public static BitmapFont FontFromTtf(String ttfFilename, int fontSize) {
+  public static BitmapFont FontFromFile(String filename, int fontSize) {
     FreeTypeFontGenerator generator =
-        new FreeTypeFontGenerator(Gdx.files.internal("font/" + ttfFilename));
+        new FreeTypeFontGenerator(Gdx.files.internal("font/" + filename));
     FreeTypeFontGenerator.FreeTypeFontParameter parameter =
         new FreeTypeFontGenerator.FreeTypeFontParameter();
     parameter.size = fontSize;

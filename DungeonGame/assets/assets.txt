@@ -1,5 +1,6 @@
 audio/music/main.ogg
 font/Dungeon.ttf
+font/Montserrat-Regular.ttf
 image/GridLayout.png
 image/door.png
 image/entry-background.jpg

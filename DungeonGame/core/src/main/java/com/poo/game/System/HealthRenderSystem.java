@@ -16,24 +16,26 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.poo.game.Components.Combat.HealthComponent;
 import com.poo.game.Entities.Entity;
+import com.poo.game.Utils.FontHelper;
 
 public class HealthRenderSystem {
 
-    public static void RenderHUD(Entity player, SpriteBatch Batch) {
-        HealthComponent healthComponent = player.GetFirstComponentOfType(HealthComponent.class);
+  public static void RenderHUD(Entity player, SpriteBatch Batch) {
+    HealthComponent healthComponent = player.GetFirstComponentOfType(HealthComponent.class);
 
-        String text = "Health: " + healthComponent.getCurrentHealth();
+    int currentHealth = healthComponent.getCurrentHealth();
+    String text = "Health: " + currentHealth;
 
-        BitmapFont font = new BitmapFont();
-        font.setColor(Color.GOLD);
+    BitmapFont font = FontHelper.FontFromFile("Montserrat-Regular.ttf", 32);
+    font.setColor(currentHealth >= 20 ? Color.GOLD : Color.RED);
 
-        //Different camera to not mix with the game
-        OrthographicCamera camera = new OrthographicCamera();
-        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        camera.update();
+    // Different camera to not mix with the game
+    OrthographicCamera camera = new OrthographicCamera();
+    camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+    camera.update();
 
-        Batch.setProjectionMatrix(camera.combined);
+    Batch.setProjectionMatrix(camera.combined);
 
-        font.draw(Batch, text, 0, camera.viewportHeight - 5);
-    }
+    font.draw(Batch, text, 0, camera.viewportHeight - 5);
+  }
 }
