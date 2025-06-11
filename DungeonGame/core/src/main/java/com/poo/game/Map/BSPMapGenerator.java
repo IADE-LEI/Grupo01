@@ -109,7 +109,7 @@ public class BSPMapGenerator {
                 if (HasTopNeighbour) MapNodeGrid[X][Y].AddTwoWayConnectionTo(MapNodeGrid[X][Y - 1]);
                 if (HasRightNeighbour) MapNodeGrid[X][Y].AddTwoWayConnectionTo(MapNodeGrid[X + 1][Y]);
                 if (HasBottomNeighbour) MapNodeGrid[X][Y].AddTwoWayConnectionTo(MapNodeGrid[X][Y + 1]);
-                mapData.getMapGraph().AddNode(MapNodeGrid[X][Y]);
+                mapData.GetMapGraph().AddNode(MapNodeGrid[X][Y]);
             }
         }
     }

@@ -70,8 +70,8 @@ public class DungeonScene implements IPotionConsumedEvent {
       Potion potion = (Potion) EntityFactory.CreatePotionObject(this, player);
       SpriteRendererComponent potionSprite =
           potion.GetFirstComponentOfType(SpriteRendererComponent.class);
-      MapNode node = Map.getMapGraph().GetRandomNodeInRoom();
-      while (usedRooms.contains(node.GetRoom())) node = Map.getMapGraph().GetRandomNodeInRoom();
+      MapNode node = Map.GetMapGraph().GetRandomNodeInRoom();
+      while (usedRooms.contains(node.GetRoom())) node = Map.GetMapGraph().GetRandomNodeInRoom();
 
       usedRooms.add(node.GetRoom());
       potionSprite.SpriteToRender.setPosition(node.GetCellX(), node.GetCellY());
@@ -87,8 +87,8 @@ public class DungeonScene implements IPotionConsumedEvent {
       Entity Monster = EntityFactory.CreateMonsterObject(this, player);
       SpriteRendererComponent monsterSprite =
           Monster.GetFirstComponentOfType(SpriteRendererComponent.class);
-      MapNode node = Map.getMapGraph().GetRandomNodeInRoom();
-      while (usedRooms.contains(node.GetRoom())) node = Map.getMapGraph().GetRandomNodeInRoom();
+      MapNode node = Map.GetMapGraph().GetRandomNodeInRoom();
+      while (usedRooms.contains(node.GetRoom())) node = Map.GetMapGraph().GetRandomNodeInRoom();
 
       usedRooms.add(node.GetRoom());
       monsterSprite.SpriteToRender.setPosition(node.GetCellX(), node.GetCellY());
@@ -107,7 +107,7 @@ public class DungeonScene implements IPotionConsumedEvent {
         player.GetFirstComponentOfType(SpriteRendererComponent.class);
 
     // Set initial player position
-    Vector2 startingPosition = Map.getMapGraph().GetFirstNode().GetPosition();
+    Vector2 startingPosition = Map.GetMapGraph().GetFirstNode().GetPosition();
     playerSprite.SetPosition(startingPosition);
     cameraComponent.SetCameraPosition(startingPosition);
 
@@ -120,9 +120,9 @@ public class DungeonScene implements IPotionConsumedEvent {
 
     // Add path so player can go into the door
     MapNode node = new MapNode(exitRoom.getCenterX(), exitRoom.getTopY(), exitRoom);
-    MapNode previousNode = Map.getMapGraph().GetNode(exitRoom.getCenterX(), exitRoom.getTopY() - 1);
+    MapNode previousNode = Map.GetMapGraph().GetNode(exitRoom.getCenterX(), exitRoom.getTopY() - 1);
     node.AddTwoWayConnectionTo(previousNode);
-    Map.getMapGraph().AddNode(node);
+    Map.GetMapGraph().AddNode(node);
   }
 
   public void RenderWorld() {
@@ -195,7 +195,7 @@ public class DungeonScene implements IPotionConsumedEvent {
   }
 
   public MapGraph GetMapGraph() {
-    return Map.getMapGraph();
+    return Map.GetMapGraph();
   }
 
   public CameraComponent GetDefaultCameraComponent() {

@@ -11,7 +11,6 @@ package com.poo.game.Map;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 
 /**
  * Class for map information Tiles (Floor & Wall) & Player
@@ -54,7 +53,7 @@ public class MapData {
     public int getHeight() {
         return height;
     }
-    
+
 
     public void RenderMap(SpriteBatch SpriteBatch) {
         for (int Y = 0; Y < height; ++Y) {
@@ -74,7 +73,7 @@ public class MapData {
         return exit;
     }
 
-    public MapGraph getMapGraph() {
+    public MapGraph GetMapGraph() {
         return MapGraph;
     }
 }

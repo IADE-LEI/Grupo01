@@ -38,8 +38,7 @@ public class PointAndClickCharacterMover extends EntityComponent implements IUpd
 
         Camera = AssignedEntity.DungeonScene.FindFirstEntityWithTag("Camera").GetFirstComponentOfType(CameraComponent.class);
     }
-
-    private boolean AllowDebugToConsole = false;
+    
     float Speed = 10.0f;
 
     @Override
@@ -59,9 +58,6 @@ public class PointAndClickCharacterMover extends EntityComponent implements IUpd
 
             if (CurrentPath.isEmpty())
                 CurrentPath = null;
-
-            if (CurrentPath != null)
-                DebugPathToConsole();
         }
 
         if (HasPath()) {
@@ -109,18 +105,6 @@ public class PointAndClickCharacterMover extends EntityComponent implements IUpd
                         (int) MouseAtWorldPoint.y
                     )
             );
-    }
-
-
-    public void DebugPathToConsole() {
-        if (!AllowDebugToConsole)
-            return;
-
-        for (int i = 0; i < CurrentPath.size(); i++) {
-            System.out.println(CurrentPath.get(i).GetCellX() + " " + CurrentPath.get(i).GetCellY());
-        }
-
-        System.out.println("");
     }
 
     public boolean HasPath() {
