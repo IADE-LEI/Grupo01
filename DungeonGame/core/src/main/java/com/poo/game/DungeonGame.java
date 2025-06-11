@@ -26,8 +26,8 @@ public class DungeonGame extends Game {
   public static int worldHeight = 50;
   public static int ViewportWidth = 20;
   public static int ViewportHeight = 20;
-  public static int WindowSizeX = 980;
-  public static int WindowSizeY = 960;
+  public static int WindowSizeX = 1000;
+  public static int WindowSizeY = 1000;
   public static int MaxNrMonsters = 5;
   public static int MaxNrPotions = 10;
 
