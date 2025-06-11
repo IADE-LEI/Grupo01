@@ -143,7 +143,7 @@ public class EntryScreen extends BaseScreen {
     // texture for background image
     backgroundTexture = new Texture("image/entry-background.jpg");
     backgroundImage = new Image(backgroundTexture);
-    backgroundImage.setSize(backgroundTexture.getWidth(), backgroundTexture.getHeight());
+    backgroundImage.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     backgroundImage.setAlign(Align.center);
     backgroundImage.setLayoutEnabled(true);
     backgroundImage.setFillParent(true);
