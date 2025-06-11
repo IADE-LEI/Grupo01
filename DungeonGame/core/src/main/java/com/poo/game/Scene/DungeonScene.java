@@ -142,11 +142,11 @@ public class DungeonScene implements IPotionConsumedEvent {
     }
 
     // Debug Sprite
-    for (int Y = 0; Y < worldHeight; ++Y) {
-      for (int X = 0; X < worldWidth; ++X) {
-        spriteBatch.draw(GridLayoutSprite, X, Y, 1, 1);
-      }
-    }
+//    for (int Y = 0; Y < worldHeight; ++Y) {
+//      for (int X = 0; X < worldWidth; ++X) {
+//        spriteBatch.draw(GridLayoutSprite, X, Y, 1, 1);
+//      }
+//    }
     Entity player = FindFirstEntityWithTag("Player");
     HealthRenderSystem.RenderHUD(player, spriteBatch);
     spriteBatch.end();
