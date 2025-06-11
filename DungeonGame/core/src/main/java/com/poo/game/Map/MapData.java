@@ -21,7 +21,7 @@ public class MapData {
     private final int height;
 
     private final Sprite[][] tiles;
-    public MapGraph MapGraph = new MapGraph();
+    private final MapGraph MapGraph = new MapGraph();
 
 
     private Room exit = null;
@@ -54,14 +54,7 @@ public class MapData {
     public int getHeight() {
         return height;
     }
-
-    public Sprite[][] getTiles() {
-        return tiles;
-    }
-
-    public Vector2 getStartingPosition() {
-        return MapGraph.GetFirstNode().GetPosition();
-    }
+    
 
     public void RenderMap(SpriteBatch SpriteBatch) {
         for (int Y = 0; Y < height; ++Y) {
@@ -79,5 +72,9 @@ public class MapData {
 
     public Room GetExitRoom() {
         return exit;
+    }
+
+    public MapGraph getMapGraph() {
+        return MapGraph;
     }
 }
