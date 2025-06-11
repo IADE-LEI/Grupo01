@@ -19,28 +19,25 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.poo.game.Constants;
 import com.poo.game.DungeonGame;
 import com.poo.game.Utils.FontHelper;
 
-public class EntryScreen extends BaseScreen {
+public class GameOverScreen extends BaseScreen {
   ScreenViewport viewport;
   Texture backgroundTexture;
   BitmapFont titleFont;
   Image backgroundImage;
-  Button playButton;
-  Button settingsButton;
-  Button exitButton;
   Stack stack;
+  Button playButton;
+  Button exitButton;
   TextureAtlas atlas;
   Skin buttonSkin;
   Stage stage;
 
-  public EntryScreen(final DungeonGame game) {
+  public GameOverScreen(final DungeonGame game) {
     super(game);
 
     viewport = new ScreenViewport();
@@ -52,9 +49,6 @@ public class EntryScreen extends BaseScreen {
             switch (keycode) {
               case Input.Keys.F2:
                 game.gotoGameScreen();
-                return true;
-              case Input.Keys.F10:
-                game.gotoSettingsScreen();
                 return true;
               case Input.Keys.ESCAPE:
                 game.exit();
@@ -77,29 +71,13 @@ public class EntryScreen extends BaseScreen {
     buttonStyle.down = buttonSkin.getDrawable("button-down");
     buttonStyle.font = FontHelper.FontFromFile("Dungeon.ttf", 32);
 
-    playButton = new TextButton("Play", buttonStyle);
+    playButton = new TextButton("Play Again", buttonStyle);
     playButton.setSize(192, 48);
     playButton.addListener(
         new InputListener() {
           @Override
           public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
             game.gotoGameScreen();
-            return true;
-          }
-
-          @Override
-          public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-            super.touchUp(event, x, y, pointer, button);
-          }
-        });
-
-    settingsButton = new TextButton("Settings", buttonStyle);
-    settingsButton.setSize(192, 48);
-    settingsButton.addListener(
-        new InputListener() {
-          @Override
-          public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-            game.gotoSettingsScreen();
             return true;
           }
 
@@ -130,7 +108,6 @@ public class EntryScreen extends BaseScreen {
     buttonsGroup.align(Align.center);
     buttonsGroup.space(15);
     buttonsGroup.addActor(playButton);
-    buttonsGroup.addActor(settingsButton);
     buttonsGroup.addActor(exitButton);
     buttonsGroup.setVisible(true);
 
@@ -148,7 +125,7 @@ public class EntryScreen extends BaseScreen {
     backgroundImage.setLayoutEnabled(true);
     backgroundImage.setFillParent(true);
 
-    titleFont = FontHelper.FontFromFile("Dungeon.ttf", 60);
+    titleFont = FontHelper.FontFromFile("Dungeon.ttf", 90);
   }
 
   @Override
@@ -174,9 +151,9 @@ public class EntryScreen extends BaseScreen {
     background.addActor(backgroundImage);
     Gdx.input.setInputProcessor(stage);
 
-    String title = "Welcome to the Dungeon Game";
-    float widthPosition = FontHelper.CenterScreen(titleFont, title, Gdx.graphics.getWidth());
-    titleFont.draw(game.batch, title, widthPosition, 180);
+    String text = "GAME OVER";
+    float widthPosition = FontHelper.CenterScreen(titleFont, text, Gdx.graphics.getWidth());
+    titleFont.draw(game.batch, text, widthPosition, 170);
 
     stage.draw();
     game.batch.end();

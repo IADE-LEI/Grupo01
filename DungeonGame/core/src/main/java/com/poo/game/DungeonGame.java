@@ -17,6 +17,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.poo.game.Interfaces.ISettings;
 import com.poo.game.Screens.EntryScreen;
+import com.poo.game.Screens.GameOverScreen;
 import com.poo.game.Screens.GameScreen;
 import com.poo.game.Screens.SettingsScreen;
 
@@ -83,6 +84,11 @@ public class DungeonGame extends Game {
 
   public void gotoSettingsScreen() {
     SettingsScreen screen = new SettingsScreen(this);
+    setScreen(screen);
+  }
+
+  public void gotoGameOverScreen() {
+    GameOverScreen screen = new GameOverScreen(this);
     setScreen(screen);
   }
 

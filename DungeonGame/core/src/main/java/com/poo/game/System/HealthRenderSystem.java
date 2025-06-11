@@ -12,12 +12,10 @@ package com.poo.game.System;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.poo.game.Components.Combat.HealthComponent;
 import com.poo.game.Constants;
 import com.poo.game.Entities.Entity;
-import com.poo.game.Utils.FontHelper;
 
 public class HealthRenderSystem {
 
@@ -27,7 +25,6 @@ public class HealthRenderSystem {
     int currentHealth = healthComponent.getCurrentHealth();
     String text = "Health: " + currentHealth;
 
-    //    BitmapFont font = FontHelper.FontFromFile("Montserrat-Regular.ttf", 32);
     Constants.DEFAULT_FONT.setColor(currentHealth >= 20 ? Color.GOLD : Color.RED);
 
     // Different camera to not mix with the game
