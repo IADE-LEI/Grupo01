@@ -52,7 +52,6 @@ public class BSPMapGenerator {
 
     private void splitNode(BSPNode node, int depth) {
         // No more rooms to create
-
         if (depth <= 0) return;
 
         if (node.split()) {

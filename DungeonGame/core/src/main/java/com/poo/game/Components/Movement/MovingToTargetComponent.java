@@ -62,13 +62,12 @@ public class MovingToTargetComponent extends MovementComponent implements IUpdat
         // Bresenham's line algorithm
         int dx = Math.abs(endX - startX);
         int dy = Math.abs(endY - startY);
-        int sx = startX < endX ? 1 : -1;
-        int sy = startY < endY ? 1 : -1;
+        int sx = startX < endX ? 1 : -1; // direction in X (1 = right, -1 = left)
+        int sy = startY < endY ? 1 : -1; // direction in Y (1 = down, -1 = up)
         int err = dx - dy;
 
         while (true) {
             // Check current tile
-
             if (AssignedEntity.DungeonScene.Map.getTile(startX, startY) == null) {
                 return false;
             }
