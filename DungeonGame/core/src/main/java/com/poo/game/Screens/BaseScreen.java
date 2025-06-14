@@ -9,7 +9,9 @@
  */
 package com.poo.game.Screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
 import com.poo.game.DungeonGame;
 
 public class BaseScreen implements Screen {
@@ -17,6 +19,11 @@ public class BaseScreen implements Screen {
 
   BaseScreen(DungeonGame game) {
     this.game = game;
+  }
+
+  protected void clearScreen() {
+    Gdx.gl.glClearColor(0, 0, 0.1f, 1);
+    Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
   }
 
   @Override

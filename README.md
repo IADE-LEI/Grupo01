@@ -23,7 +23,7 @@ __________
 - [x] ECS - Entity Component System
 - [x] BSP - Binary Space Partition
 - [x] Factory Pattern
-- [ ] A* Search Algorithm
+- [x] A* Search Algorithm
 
 #### Tecnologias utilizadas
 - Java https://www.oracle.com/pt/java/technologies/downloads

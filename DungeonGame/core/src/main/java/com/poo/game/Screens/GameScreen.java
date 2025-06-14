@@ -41,17 +41,15 @@ public class GameScreen extends BaseScreen {
         });
     Gdx.input.setInputProcessor(stage);
 
-    dungeonScene = new DungeonScene();
-
+    dungeonScene = new DungeonScene(this.game);
     dungeonScene.CreateWorld();
   }
 
   @Override
   public void render(float delta) {
-
     dungeonScene.UpdateWorld(delta);
 
-    //Handle interactions after updating the world
+    // Handle interactions after updating the world
     dungeonScene.HandleInteractions();
 
     ScreenUtils.clear(Color.BLACK);

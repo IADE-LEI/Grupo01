@@ -11,6 +11,7 @@ package com.poo.game.Utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 public class FontHelper {
@@ -23,5 +24,10 @@ public class FontHelper {
     BitmapFont font = generator.generateFont(parameter);
     generator.dispose();
     return font;
+  }
+
+  public static float CenterScreen(BitmapFont font, String text, float width) {
+    GlyphLayout layout = new GlyphLayout(font, text);
+    return (width - layout.width + 20) / 2.0f;
   }
 }

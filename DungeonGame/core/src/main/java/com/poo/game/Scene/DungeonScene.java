@@ -14,7 +14,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.poo.game.BaseComponents.EntityFactory;
 import com.poo.game.Components.Camera.CameraComponent;
+import com.poo.game.Components.Combat.HealthComponent;
 import com.poo.game.Components.Render.SpriteRendererComponent;
+import com.poo.game.DungeonGame;
 import com.poo.game.Entities.Entity;
 import com.poo.game.Entities.Potion;
 import com.poo.game.Interfaces.IPotionConsumedEvent;
@@ -26,10 +28,10 @@ import com.poo.game.Map.Room;
 import com.poo.game.System.HealthRenderSystem;
 
 import java.util.ArrayList;
-
 import static com.poo.game.DungeonGame.*;
 
 public class DungeonScene implements IPotionConsumedEvent {
+  protected final DungeonGame game;
 
   SpriteBatch spriteBatch;
 
@@ -38,6 +40,10 @@ public class DungeonScene implements IPotionConsumedEvent {
 
   Texture GridLayoutSprite;
   public MapData Map;
+
+  public DungeonScene(final DungeonGame game) {
+    this.game = game;
+  }
 
   public void CreateWorld() {
     SceneEntities = new ArrayList<>();
@@ -64,8 +70,8 @@ public class DungeonScene implements IPotionConsumedEvent {
       Potion potion = (Potion) EntityFactory.CreatePotionObject(this, player);
       SpriteRendererComponent potionSprite =
           potion.GetFirstComponentOfType(SpriteRendererComponent.class);
-      MapNode node = Map.MapGraph.GetRandomNodeInRoom();
-      while (usedRooms.contains(node.GetRoom())) node = Map.MapGraph.GetRandomNodeInRoom();
+      MapNode node = Map.GetMapGraph().GetRandomNodeInRoom();
+      while (usedRooms.contains(node.GetRoom())) node = Map.GetMapGraph().GetRandomNodeInRoom();
 
       usedRooms.add(node.GetRoom());
       potionSprite.SpriteToRender.setPosition(node.GetCellX(), node.GetCellY());
@@ -81,8 +87,8 @@ public class DungeonScene implements IPotionConsumedEvent {
       Entity Monster = EntityFactory.CreateMonsterObject(this, player);
       SpriteRendererComponent monsterSprite =
           Monster.GetFirstComponentOfType(SpriteRendererComponent.class);
-      MapNode node = Map.MapGraph.GetRandomNodeInRoom();
-      while (usedRooms.contains(node.GetRoom())) node = Map.MapGraph.GetRandomNodeInRoom();
+      MapNode node = Map.GetMapGraph().GetRandomNodeInRoom();
+      while (usedRooms.contains(node.GetRoom())) node = Map.GetMapGraph().GetRandomNodeInRoom();
 
       usedRooms.add(node.GetRoom());
       monsterSprite.SpriteToRender.setPosition(node.GetCellX(), node.GetCellY());
@@ -101,7 +107,7 @@ public class DungeonScene implements IPotionConsumedEvent {
         player.GetFirstComponentOfType(SpriteRendererComponent.class);
 
     // Set initial player position
-    Vector2 startingPosition = Map.MapGraph.GetFirstNode().GetPosition();
+    Vector2 startingPosition = Map.GetMapGraph().GetFirstNode().GetPosition();
     playerSprite.SetPosition(startingPosition);
     cameraComponent.SetCameraPosition(startingPosition);
 
@@ -114,9 +120,9 @@ public class DungeonScene implements IPotionConsumedEvent {
 
     // Add path so player can go into the door
     MapNode node = new MapNode(exitRoom.getCenterX(), exitRoom.getTopY(), exitRoom);
-    MapNode previousNode = Map.MapGraph.GetNode(exitRoom.getCenterX(), exitRoom.getTopY() - 1);
+    MapNode previousNode = Map.GetMapGraph().GetNode(exitRoom.getCenterX(), exitRoom.getTopY() - 1);
     node.AddTwoWayConnectionTo(previousNode);
-    Map.MapGraph.AddNode(node);
+    Map.GetMapGraph().AddNode(node);
   }
 
   public void RenderWorld() {
@@ -131,25 +137,37 @@ public class DungeonScene implements IPotionConsumedEvent {
     // The Order You Draw This In Is Important!
     Map.RenderMap(spriteBatch);
 
-    // spriteBatch.draw(new Texture("image\\player.png"), 0, 0, worldWidth, worldHeight); // draw
-    // the background
-
     for (int i = 0; i < SceneEntities.size(); ++i) {
       SceneEntities.get(i).Render(spriteBatch);
     }
 
     // Debug Sprite
-    for (int Y = 0; Y < worldHeight; ++Y) {
-      for (int X = 0; X < worldWidth; ++X) {
-        spriteBatch.draw(GridLayoutSprite, X, Y, 1, 1);
-      }
-    }
+//    for (int Y = 0; Y < worldHeight; ++Y) {
+//      for (int X = 0; X < worldWidth; ++X) {
+//        spriteBatch.draw(GridLayoutSprite, X, Y, 1, 1);
+//      }
+//    }
     Entity player = FindFirstEntityWithTag("Player");
     HealthRenderSystem.RenderHUD(player, spriteBatch);
     spriteBatch.end();
+
+    // Check Health of player, if 0 goto Game Over
+    HealthComponent healthComponent = player.GetFirstComponentOfType(HealthComponent.class);
+    if (healthComponent.getCurrentHealth() <= 0) {
+      DestroyWorld();
+      this.game.gotoGameOverScreen();
+    }
   }
 
-  public void DestroyWorld() {}
+  public void DestroyWorld() {
+    if (!SceneEntities.isEmpty()) {
+      SceneEntities.clear();
+    }
+    if (!Cameras.isEmpty()) {
+      Cameras.clear();
+    }
+    GridLayoutSprite.dispose();
+  }
 
   public Entity FindFirstEntityWithTag(String Tag) {
     int HashedTag = Tag.hashCode();
@@ -177,7 +195,7 @@ public class DungeonScene implements IPotionConsumedEvent {
   }
 
   public MapGraph GetMapGraph() {
-    return Map.MapGraph;
+    return Map.GetMapGraph();
   }
 
   public CameraComponent GetDefaultCameraComponent() {
@@ -202,10 +220,6 @@ public class DungeonScene implements IPotionConsumedEvent {
     }
 
     return exitDoorPosition;
-  }
-
-  public void RemoveEntity(Entity entity) {
-    SceneEntities.remove(entity);
   }
 
   @Override
