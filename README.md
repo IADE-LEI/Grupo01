@@ -6,36 +6,6 @@ __________
 #### Descrição
 - Dungeon game
 
-#### Requisitos OOP - Object-oriented programming
-- [x] Encapsulation
-- [x] Abstraction
-- [x] Inheritance
-- [x] Polymorphism
+__________
 
-### Requisitos S.O.L.I.D.
-- [ ] Single Responsibility Principle (SRP)
-- [ ] Open/Closed Principle
-- [ ] Liskov’s Substitution Principle (LSP)
-- [ ] Interface Segregation Principle (ISP)
-- [ ] Dependency Inversion Principle (DIP)
-
-### Requisitos Design Patterns
-- [x] ECS - Entity Component System
-- [x] BSP - Binary Space Partition
-- [x] Factory Pattern
-- [ ] A* Search Algorithm
-
-#### Tecnologias utilizadas
-- Java https://www.oracle.com/pt/java/technologies/downloads
-- libgdx https://libgdx.com
-- IDE Jetbrains IntelliJ IDEA https://www.jetbrains.com/idea/download/download-thanks.html
-
-#### Professor 
-- Nelson Costa
-
-#### Autores
-- António Carlos Neto (20241391)
-- Paulo André Jadaugy (20241711)
-- Tomás Pinto Pereira (20241740)
-- Affonso Sana Neto (20240910)
-- Tiago Araújo (20241668)
+#### branch desatualizada, o código final está na branch "main"
