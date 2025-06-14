@@ -1,24 +1,11 @@
 >### IADE - Lic. de Engenharia Informática - 2024/2025 
 >### LEI1A2S - Programação e Algoritmos
 __________
-## Java Game
-### Projeto de Programação e Algoritmos - Grupo 01
-__________
+## Projeto de Programação e Algoritmos - Grupo 01
 
 #### Descrição
-- Breve descrição do projeto a desenvolver
+- Dungeon game
 
-#### Tecnologias utilizadas
-- Java https://www.oracle.com/pt/java/technologies/downloads
-- libgdx https://libgdx.com
-- IDE Jetbrains IntelliJ IDEA https://www.jetbrains.com/idea/download/download-thanks.html
+__________
 
-#### Professor 
-- Nelson Costa
-
-#### Autores
-- António Carlos Neto (20241391)
-- Paulo André Jadaugy (20241711)
-- Tomás Pinto Pereira (20241740)
-- Affonso Sana Neto (20240910)
-
+#### branch desatualizada, o código final está na branch "main"
